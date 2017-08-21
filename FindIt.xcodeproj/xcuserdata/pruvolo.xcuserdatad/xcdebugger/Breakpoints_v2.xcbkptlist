@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PhotoScroll/ZoomedPhotoViewController.swift"
+            timestampString = "524003691.81032"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PhotoScroll.ZoomedPhotoViewController.photoName.getter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "PhotoScroll"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pruvolo/Downloads/PhotoScroll_Starter/PhotoScroll/ZoomedPhotoViewController.swift"
+                  timestampString = "523286640.672471"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PhotoScroll.ZoomedPhotoViewController.photoName.setter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "PhotoScroll"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pruvolo/Downloads/PhotoScroll_Starter/PhotoScroll/ZoomedPhotoViewController.swift"
+                  timestampString = "523286640.675844"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PhotoScroll.ZoomedPhotoViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; PhotoScroll.ZoomedPhotoViewController"
+                  moduleName = "PhotoScroll"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pruvolo/Downloads/PhotoScroll_Starter/PhotoScroll/ZoomedPhotoViewController.swift"
+                  timestampString = "523286640.677645"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "232">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PhotoScroll.ZoomedPhotoViewController.init(coder: __ObjC.NSCoder) -&gt; Swift.Optional&lt;PhotoScroll.ZoomedPhotoViewController&gt;"
+                  moduleName = "PhotoScroll"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pruvolo/Downloads/PhotoScroll_Starter/PhotoScroll/ZoomedPhotoViewController.swift"
+                  timestampString = "523286640.679248"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "188">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
