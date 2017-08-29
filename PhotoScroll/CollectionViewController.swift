@@ -29,13 +29,37 @@
  */
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseAuthUI
+import FirebasePhoneAuthUI
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   fileprivate let reuseIdentifier = "PhotoCell"
   fileprivate let thumbnailSize = CGSize(width: 70.0, height: 70.0)
   fileprivate let sectionInsets = UIEdgeInsets(top: 10, left: 5.0, bottom: 10.0, right: 5.0)
+
   fileprivate let photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]
+  var auth: Auth?
+  var authUI: FUIAuth?
   
+  func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
+    print("got a delegate auth callback")
+    if error != nil {
+      //Problem signing in
+      login()
+    }
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.auth = Auth.auth()
+    self.authUI = FUIAuth.defaultAuthUI()
+    // TODO: need to make a signout button with the code below
+    //try! Auth.auth().signOut()
+    checkLoggedIn()
+  }
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let cell = sender as? UICollectionViewCell,
       let indexPath = collectionView?.indexPath(for: cell),
@@ -44,6 +68,26 @@ class CollectionViewController: UICollectionViewController {
       zoomedPhotoViewController.objectToFind = "Find the \(indexPath.row + 1)"
     }
   }
+
+  func login() {
+    authUI?.delegate = self
+    authUI?.providers = [FUIPhoneAuth(authUI:authUI!)]
+    let authViewController = authUI?.authViewController()
+    self.present(authViewController!, animated: true, completion: nil)
+  }
+  
+  func checkLoggedIn() {
+    Auth.auth().addStateDidChangeListener { auth, user in
+      if user != nil {
+        // User is signed in.
+        Database.database().reference().child("/notification_tokens/" + user!.uid).child(Messaging.messaging().fcmToken!).setValue(true)
+      } else {
+        // No user is signed in.
+        self.login()
+      }
+    }
+  }
+  
 }
 
 // MARK: UICollectionViewDataSource

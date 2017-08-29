@@ -6,6 +6,10 @@ target 'FindIt' do
   use_frameworks!
 
   # Pods for FindIt
-  pod 'SwiftyJSON'
-  pod 'Alamofire'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'FirebaseUI/Phone'
+  pod 'FirebaseUI/Auth'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Database'
 end

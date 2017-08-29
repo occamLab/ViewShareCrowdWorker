@@ -30,8 +30,9 @@
 
 import UIKit
 import UserNotifications
-import Alamofire
-import SwiftyJSON
+import Firebase
+import FirebaseAuth
+import FirebaseAuthUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var apnsId: String?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    print("attached")
-
+    FirebaseApp.configure()
     registerForPushNotifications()
+  
     // Check if launched from notification (note: currently I don't know that this is actually working)
     if let notification = launchOptions?[.remoteNotification] as? [String: AnyObject] {
       print(notification)
@@ -52,35 +53,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func respondToNotification(notificationPayload: [AnyHashable : Any]) {
     print(notificationPayload)
-    let parameters: Parameters = [
-      "label_request": notificationPayload["labeling_job_id"] as! Int,
-      ]
-    print("attempting to get image")
-    Alamofire.request("https://damp-chamber-71992.herokuapp.com/get_labeling_job", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
-      { response in
-        if let json:NSDictionary = response.result.value as? NSDictionary,
-           let image_data_array:[String] = json.value(forKeyPath: "data.image") as? [String],
-           !image_data_array.isEmpty,
-           let dataDecoded : Data = Data(base64Encoded: image_data_array[0], options: .ignoreUnknownCharacters),
-           let decodedImage = UIImage(data: dataDecoded) {
-          
-          print("successfully decoded image")
-          // Access the storyboard and fetch an instance of the view controller
-          let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          let viewController: ZoomedPhotoViewController = storyboard.instantiateViewController(withIdentifier: "PhotoViewController") as! ZoomedPhotoViewController
-          viewController.imageToLoad = decodedImage
-          
-          let object_to_find_as_array:[String] = json.value(forKeyPath: "data.object_to_find")! as! [String]
-          viewController.objectToFind = object_to_find_as_array[0]
-          
-          let labeling_job_id_as_array:[Int] = json.value(forKeyPath: "data.label_request")! as! [Int]
-          viewController.labelingJob = labeling_job_id_as_array[0]
-          viewController.apnsId = self.apnsId
-          // Then push that view controller onto the navigation stack
-          let rootViewController = self.window!.rootViewController as! UINavigationController;
-          rootViewController.pushViewController(viewController, animated: true);
-        }
-    }
+    let jobUUID = notificationPayload["gcm.notification.labeling_job_id"] as! String
+    let ref = Database.database().reference().child("labeling_jobs/" + jobUUID)
+
+    ref.observeSingleEvent(of: .value, with: { snapshot in
+      if !snapshot.exists() { return }
+      let value = snapshot.value as? NSDictionary
+
+      if value != nil, let dataDecoded : Data = Data(base64Encoded: value!["image"] as! String, options: .ignoreUnknownCharacters),
+        let decodedImage = UIImage(data: dataDecoded) {
+        
+        // Access the storyboard and fetch an instance of the view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController: ZoomedPhotoViewController = storyboard.instantiateViewController(withIdentifier: "PhotoViewController") as! ZoomedPhotoViewController
+        viewController.imageToLoad = decodedImage
+        viewController.objectToFind = value!["object_to_find"] as! String
+        viewController.labelingJob = jobUUID
+        // Then push that view controller onto the navigation stack
+        let rootViewController = self.window!.rootViewController as! UINavigationController;
+        rootViewController.pushViewController(viewController, animated: true);
+      }
+    })
   }
   
   func application(
@@ -109,24 +102,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   func application(_ application: UIApplication,
                    didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-    let tokenParts = deviceToken.map { data -> String in
-      return String(format: "%02.2hhx", data)
-    }
-    
-    apnsId = tokenParts.joined()
-    print("Device Token: \(apnsId!)")
-    let parameters: Parameters = [
-      "apnsId": apnsId!,
-      ]
-    Alamofire.request("https://damp-chamber-71992.herokuapp.com/dologin", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
-      { response in
-        debugPrint("Successfully logged in", response)
-    }
   }
   
   func application(_ application: UIApplication,
                    didFailToRegisterForRemoteNotificationsWithError error: Error) {
     print("Failed to register: \(error)")
+  }
+  
+  
+  
+  @available(iOS 9.0, *)
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+    return self.handleOpenUrl(url, sourceApplication: sourceApplication)
+  }
+  
+  @available(iOS 8.0, *)
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    return self.handleOpenUrl(url, sourceApplication: sourceApplication)
+  }
+  
+  
+  func handleOpenUrl(_ url: URL, sourceApplication: String?) -> Bool {
+    if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+      return true
+    }
+    // other URL handling goes here.
+    return false
   }
 }
 

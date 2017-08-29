@@ -29,8 +29,8 @@
  */
 
 import UIKit
-import Alamofire
-import SwiftyJSON
+import FirebaseAuth
+import Firebase
 
 class ZoomedPhotoViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
@@ -47,44 +47,19 @@ class ZoomedPhotoViewController: UIViewController {
   var imageToLoad: UIImage?
   var objectToFind: String?
   var centerPoint: CGPoint?
-  var labelingJob: Int?
-  var apnsId : String?
+  var labelingJob: String?
 
   @IBAction func handleClick(_ sender: UIButton) {
     if let selected = centerPoint,
        let jobId = labelingJob,
-       let labelerId = apnsId {
-      let parameters: Parameters = [
-        "labeler_id" : labelerId,
-        "labeling_job" : jobId,
+       let labelerId = Auth.auth().currentUser?.uid {
+      Database.database().reference().child("responses/" + jobId + "/" + labelerId).setValue([
         "x": selected.x,
         "y": selected.y
-      ]
-      Alamofire.request("https://damp-chamber-71992.herokuapp.com/addlabel", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
-            debugPrint(response)
-        
-            if let json = response.result.value {
-              print("JSON: \(json)")
-            }
-          }
-      if navigationController != nil {
+        ])
+      if navigationController != nil {  // might not need this (due to optional below)
         navigationController?.popViewController(animated: true)
       }
-    }
-  }
-  
-  func add_labeling_job_to_db(image : UIImage) {
-    //Now use image to create into NSData format
-    let imageData:Data? = UIImageJPEGRepresentation(image, 1.0)!
-    let strBase64 = imageData!.base64EncodedString(options: .lineLength64Characters)
-    let parameters: Parameters = [
-      "object_to_find": "Dummy object",
-      "image": strBase64
-    ]
-    print("attempting to get image")
-    Alamofire.request("https://damp-chamber-71992.herokuapp.com/add_labeling_job", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON
-      { response in
-        print(response)
     }
   }
   
