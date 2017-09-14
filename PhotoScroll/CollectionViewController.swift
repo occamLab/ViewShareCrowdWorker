@@ -39,12 +39,13 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   fileprivate let thumbnailSize = CGSize(width: 70.0, height: 70.0)
   fileprivate let sectionInsets = UIEdgeInsets(top: 10, left: 5.0, bottom: 10.0, right: 5.0)
 
-  fileprivate let photos = ["photo1", "photo2", "photo3", "photo4", "photo5"]
+  fileprivate var photos = [] as Array
   var auth: Auth?
   var authUI: FUIAuth?
+  var clockOffset: Double?
+  var conn: Database?
   
   func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
-    print("got a delegate auth callback")
     if error != nil {
       //Problem signing in
       login()
@@ -53,19 +54,63 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    conn = Database.database()
     self.auth = Auth.auth()
     self.authUI = FUIAuth.defaultAuthUI()
     // TODO: need to make a signout button with the code below
-    //try! Auth.auth().signOut()
+    // try! Auth.auth().signOut()
     checkLoggedIn()
+    let offsetRef = conn?.reference(withPath: ".info/serverTimeOffset")
+    offsetRef?.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+      self.clockOffset = snapshot.value as? Double
+      // get the pending assignments
+      self.conn?.reference(withPath: "/notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments").observe(DataEventType.childAdded, with: { (snapshot) in
+        let jobUUID = snapshot.key
+        let childVals = snapshot.value as! NSDictionary
+        let objectToFind = childVals["object_to_find"]
+        let creationTime = childVals["creation_timestamp"] as! Int
+        let imageRef = Storage.storage().reference(withPath: jobUUID + ".jpg")
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        let estimatedServerTimeMs = NSDate().timeIntervalSince1970 * 1000.0 + self.clockOffset!
+        if estimatedServerTimeMs - Double(creationTime) > 120*1000 {
+          // too old
+          self.conn?.reference().child("notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments/" + jobUUID).removeValue()
+          return
+        }
+        imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if error == nil {
+            let image = UIImage(data: data!)
+            self.photos.append(["jobUUID": jobUUID, "image": image!, "object_to_find": objectToFind, "creation_timestamp": creationTime]);
+            self.collectionView?.reloadData()
+          }
+        }
+      })
+    })
+    
+    conn?.reference().child("/notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments").observe(DataEventType.childRemoved, with: { (snapshot) in
+      // TODO: not sure this is threadsafe
+      self.photos = self.photos.filter { ($0 as! NSDictionary)["jobUUID"] as! String != snapshot.key }
+      self.collectionView?.reloadData()
+    })
   }
 
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    let estimatedServerTimeMs = NSDate().timeIntervalSince1970 * 1000.0 + self.clockOffset!
+    if let cell = sender as? PhotoCell {
+      if estimatedServerTimeMs - Double(cell.creationTimeStamp) > 120*1000 {
+        // too old
+        self.conn?.reference().child("notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments/" + cell.jobUUID).removeValue()
+        return false
+      }
+    }
+    return true
+  }
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let cell = sender as? UICollectionViewCell,
-      let indexPath = collectionView?.indexPath(for: cell),
+    if let cell = sender as? PhotoCell,
       let zoomedPhotoViewController = segue.destination as? ZoomedPhotoViewController {
-      zoomedPhotoViewController.photoName = "photo\(indexPath.row + 1)"
-      zoomedPhotoViewController.objectToFind = "Find the \(indexPath.row + 1)"
+      zoomedPhotoViewController.imageToLoad = cell.fullSizedImage
+      zoomedPhotoViewController.objectToFind = cell.objectToFind
+      zoomedPhotoViewController.labelingJob = cell.jobUUID
     }
   }
 
@@ -80,7 +125,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     Auth.auth().addStateDidChangeListener { auth, user in
       if user != nil {
         // User is signed in.
-        Database.database().reference().child("/notification_tokens/" + user!.uid).child(Messaging.messaging().fcmToken!).setValue(true)
+        self.conn?.reference().child("/notification_tokens/" + user!.uid).child(Messaging.messaging().fcmToken!).setValue(true)
       } else {
         // No user is signed in.
         self.login()
@@ -97,13 +142,20 @@ extension CollectionViewController {
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    print("Getting count!", photos.count)
     return photos.count
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
-    let fullSizedImage = UIImage(named:photos[indexPath.row])
-    cell.imageView.image = fullSizedImage?.thumbnailOfSize(thumbnailSize)
+    let cellData = photos[indexPath.row] as! NSDictionary
+    cell.fullSizedImage = cellData["image"] as! UIImage
+    cell.imageView.image = cell.fullSizedImage.thumbnailOfSize(thumbnailSize)
+    cell.objectToFind = cellData["object_to_find"] as! String
+    cell.jobUUID = cellData["jobUUID"] as! String
+    cell.creationTimeStamp = cellData["creation_timestamp"] as! Int
+    cell.indexPath = indexPath
+    // todo: need to store this somehow
     return cell
   }
 }

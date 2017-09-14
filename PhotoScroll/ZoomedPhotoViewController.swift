@@ -53,10 +53,13 @@ class ZoomedPhotoViewController: UIViewController {
     if let selected = centerPoint,
        let jobId = labelingJob,
        let labelerId = Auth.auth().currentUser?.uid {
-      Database.database().reference().child("responses/" + jobId + "/" + labelerId).setValue([
+      let conn = Database.database()
+      conn.reference().child("responses/" + jobId + "/" + labelerId).setValue([
         "x": selected.x,
         "y": selected.y
         ])
+
+      conn.reference().child("notification_tokens/" + labelerId + "/assignments/" + jobId).removeValue()
       if navigationController != nil {  // might not need this (due to optional below)
         navigationController?.popViewController(animated: true)
       }

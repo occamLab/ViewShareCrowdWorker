@@ -32,4 +32,9 @@ import UIKit
 
 class PhotoCell : UICollectionViewCell {
   @IBOutlet weak var imageView: UIImageView!
+  var objectToFind: String!
+  var fullSizedImage: UIImage!
+  var jobUUID: String!
+  var indexPath: IndexPath!
+  var creationTimeStamp: Int!
 }

@@ -52,7 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func respondToNotification(notificationPayload: [AnyHashable : Any]) {
-    print(notificationPayload)
+    let rootViewController = self.window!.rootViewController as! UINavigationController;
+    if rootViewController.topViewController is ZoomedPhotoViewController {
+      return
+    }
     let jobUUID = notificationPayload["gcm.notification.labeling_job_id"] as! String
     let ref = Database.database().reference().child("labeling_jobs/" + jobUUID)
 
@@ -60,18 +63,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       if !snapshot.exists() { return }
       let value = snapshot.value as? NSDictionary
 
-      if value != nil, let dataDecoded : Data = Data(base64Encoded: value!["image"] as! String, options: .ignoreUnknownCharacters),
-        let decodedImage = UIImage(data: dataDecoded) {
-        
-        // Access the storyboard and fetch an instance of the view controller
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController: ZoomedPhotoViewController = storyboard.instantiateViewController(withIdentifier: "PhotoViewController") as! ZoomedPhotoViewController
-        viewController.imageToLoad = decodedImage
-        viewController.objectToFind = value!["object_to_find"] as! String
-        viewController.labelingJob = jobUUID
-        // Then push that view controller onto the navigation stack
-        let rootViewController = self.window!.rootViewController as! UINavigationController;
-        rootViewController.pushViewController(viewController, animated: true);
+      if value != nil {
+        let imageRef = Storage.storage().reference(withPath: jobUUID + ".jpg")
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if error == nil {
+            let image = UIImage(data: data!)
+            // Access the storyboard and fetch an instance of the view controller
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController: ZoomedPhotoViewController = storyboard.instantiateViewController(withIdentifier: "PhotoViewController") as! ZoomedPhotoViewController
+            viewController.imageToLoad = image
+            viewController.objectToFind = value!["object_to_find"] as? String
+            viewController.labelingJob = jobUUID
+            // Then push that view controller onto the navigation stack
+            rootViewController.pushViewController(viewController, animated: true);
+          }
+        }
       }
     })
   }
