@@ -40,10 +40,11 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   fileprivate let sectionInsets = UIEdgeInsets(top: 10, left: 5.0, bottom: 10.0, right: 5.0)
 
   fileprivate var photos = [] as Array
+  @IBOutlet weak var logoutButton: UIBarButtonItem!
   var auth: Auth?
   var authUI: FUIAuth?
   var clockOffset: Double?
-  var conn: Database?
+  var userAssignmentsRef: DatabaseReference?
   
   func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
     if error != nil {
@@ -52,46 +53,19 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     }
   }
   
+  @IBAction func handleSelect(_ sender: Any) {
+    try! Auth.auth().signOut()
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    conn = Database.database()
     self.auth = Auth.auth()
     self.authUI = FUIAuth.defaultAuthUI()
-    // TODO: need to make a signout button with the code below
-    // try! Auth.auth().signOut()
-    checkLoggedIn()
-    let offsetRef = conn?.reference(withPath: ".info/serverTimeOffset")
-    offsetRef?.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
-      self.clockOffset = snapshot.value as? Double
-      // get the pending assignments
-      self.conn?.reference(withPath: "/notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments").observe(DataEventType.childAdded, with: { (snapshot) in
-        let jobUUID = snapshot.key
-        let childVals = snapshot.value as! NSDictionary
-        let objectToFind = childVals["object_to_find"]
-        let creationTime = childVals["creation_timestamp"] as! Int
-        let imageRef = Storage.storage().reference(withPath: jobUUID + ".jpg")
-        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-        let estimatedServerTimeMs = NSDate().timeIntervalSince1970 * 1000.0 + self.clockOffset!
-        if estimatedServerTimeMs - Double(creationTime) > 120*1000 {
-          // too old
-          self.conn?.reference().child("notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments/" + jobUUID).removeValue()
-          return
-        }
-        imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-          if error == nil {
-            let image = UIImage(data: data!)
-            self.photos.append(["jobUUID": jobUUID, "image": image!, "object_to_find": objectToFind, "creation_timestamp": creationTime]);
-            self.collectionView?.reloadData()
-          }
-        }
-      })
-    })
+    registerForLoginCallbacks()
     
-    conn?.reference().child("/notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments").observe(DataEventType.childRemoved, with: { (snapshot) in
-      // TODO: not sure this is threadsafe
-      self.photos = self.photos.filter { ($0 as! NSDictionary)["jobUUID"] as! String != snapshot.key }
-      self.collectionView?.reloadData()
-    })
+    if auth?.currentUser == nil {
+      login()
+    }
   }
 
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -99,7 +73,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     if let cell = sender as? PhotoCell {
       if estimatedServerTimeMs - Double(cell.creationTimeStamp) > 120*1000 {
         // too old
-        self.conn?.reference().child("notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments/" + cell.jobUUID).removeValue()
+        Database.database().reference().child("notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments/" + cell.jobUUID).removeValue()
         return false
       }
     }
@@ -121,18 +95,62 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     self.present(authViewController!, animated: true, completion: nil)
   }
   
-  func checkLoggedIn() {
+  func registerForLoginCallbacks() {
     Auth.auth().addStateDidChangeListener { auth, user in
       if user != nil {
         // User is signed in.
-        self.conn?.reference().child("/notification_tokens/" + user!.uid).child(Messaging.messaging().fcmToken!).setValue(true)
+        Database.database().reference(withPath: "/account_mapping/" + Messaging.messaging().fcmToken!).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+          if snapshot.exists() {
+            Database.database().reference(withPath: "/notification_tokens/" + (snapshot.value as! String) + "/" + Messaging.messaging().fcmToken!).removeValue()
+          }
+          // grab ownership of the token
+          Database.database().reference(withPath: "/account_mapping/" + Messaging.messaging().fcmToken!).setValue(user!.uid)
+          Database.database().reference(withPath: "/notification_tokens/" + user!.uid + "/" + Messaging.messaging().fcmToken!).setValue(true)
+        });
+
+        self.userAssignmentsRef = Database.database().reference(withPath: "/notification_tokens/" + user!.uid + "/assignments")
+        let offsetRef = Database.database().reference(withPath: ".info/serverTimeOffset")
+        offsetRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+          self.clockOffset = snapshot.value as? Double
+          // get the pending assignments
+          self.userAssignmentsRef!.observe(DataEventType.childAdded, with: { (snapshot) in
+            let jobUUID = snapshot.key
+            let childVals = snapshot.value as! NSDictionary
+            let objectToFind = childVals["object_to_find"]
+            let creationTime = childVals["creation_timestamp"] as! Int
+            let imageRef = Storage.storage().reference(withPath: jobUUID + ".jpg")
+            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+            let estimatedServerTimeMs = NSDate().timeIntervalSince1970 * 1000.0 + self.clockOffset!
+            if estimatedServerTimeMs - Double(creationTime) > 120*1000 {
+              // too old
+              Database.database().reference().child("notification_tokens/" + (Auth.auth().currentUser?.uid)! + "/assignments/" + jobUUID).removeValue()
+              return
+            }
+            imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+              if error == nil {
+                let image = UIImage(data: data!)
+                self.photos.append(["jobUUID": jobUUID, "image": image!, "object_to_find": objectToFind, "creation_timestamp": creationTime]);
+                self.collectionView?.reloadData()
+              }
+            }
+          })
+        })
+        
+        self.userAssignmentsRef!.observe(DataEventType.childRemoved, with: { (snapshot) in
+          // TODO: not sure this is threadsafe
+          self.photos = self.photos.filter { ($0 as! NSDictionary)["jobUUID"] as! String != snapshot.key }
+          self.collectionView?.reloadData()
+        })
       } else {
-        // No user is signed in.
+        // No user is signed in.  Cleanup any old observers and then login
+        self.userAssignmentsRef?.removeAllObservers()
+        // make sure to get rid of all of the photos we may have loaded previously
+        self.photos = []
+        self.collectionView?.reloadData()
         self.login()
       }
     }
   }
-  
 }
 
 // MARK: UICollectionViewDataSource
@@ -142,7 +160,6 @@ extension CollectionViewController {
   }
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    print("Getting count!", photos.count)
     return photos.count
   }
   

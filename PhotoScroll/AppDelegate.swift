@@ -57,6 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       return
     }
     let jobUUID = notificationPayload["gcm.notification.labeling_job_id"] as! String
+    // make sure we have actually been assigned this job.  If we have used multiple different accounts with the
+    // same app instance, we will wind up potentially receiving notifications not meant for us.
     let ref = Database.database().reference().child("labeling_jobs/" + jobUUID)
 
     ref.observeSingleEvent(of: .value, with: { snapshot in

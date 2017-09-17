@@ -54,9 +54,16 @@
                             <outlet property="delegate" destination="Dz9-ob-7Jl" id="sJK-AT-v3f"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Assignments" id="9o7-pK-quI"/>
+                    <navigationItem key="navigationItem" title="Assignments" id="9o7-pK-quI">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="NXr-1e-DXJ">
+                            <connections>
+                                <action selector="handleSelect:" destination="Dz9-ob-7Jl" id="I4E-hB-Kvd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="gVo-6Z-tf9" id="6oI-F8-mV0"/>
+                        <outlet property="logoutButton" destination="NXr-1e-DXJ" id="jST-EC-EOD"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HG6-cz-zOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,6 +129,8 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="imageView" destination="Ve5-7J-0me" id="WCm-ci-aDE"/>
                         <outlet property="imageViewBottomConstraint" destination="fsB-HT-ZoS" id="qcs-ck-9O1"/>
