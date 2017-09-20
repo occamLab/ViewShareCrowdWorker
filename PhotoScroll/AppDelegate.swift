@@ -77,6 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             viewController.imageToLoad = image
             viewController.objectToFind = value!["object_to_find"] as? String
             viewController.labelingJob = jobUUID
+            viewController.requestingUser = value!["requesting_user"] as? String
             // Then push that view controller onto the navigation stack
             rootViewController.pushViewController(viewController, animated: true);
           }

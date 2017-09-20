@@ -35,6 +35,7 @@ class PhotoCell : UICollectionViewCell {
   var objectToFind: String!
   var fullSizedImage: UIImage!
   var jobUUID: String!
+  var requestingUser: String!
   var indexPath: IndexPath!
   var creationTimeStamp: Int!
 }

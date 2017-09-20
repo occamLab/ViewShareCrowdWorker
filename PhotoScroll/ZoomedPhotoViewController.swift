@@ -48,13 +48,15 @@ class ZoomedPhotoViewController: UIViewController {
   var objectToFind: String?
   var centerPoint: CGPoint?
   var labelingJob: String?
+  var requestingUser: String?
 
   @IBAction func handleClick(_ sender: UIButton) {
     if let selected = centerPoint,
        let jobId = labelingJob,
+       let requestUser = requestingUser,
        let labelerId = Auth.auth().currentUser?.uid {
       let conn = Database.database()
-      conn.reference().child("responses/" + jobId + "/" + labelerId).setValue([
+      conn.reference().child("responses/" + requestUser + "/" + jobId + "/" + labelerId).setValue([
         "x": selected.x,
         "y": selected.y
         ])

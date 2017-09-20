@@ -85,6 +85,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
       zoomedPhotoViewController.imageToLoad = cell.fullSizedImage
       zoomedPhotoViewController.objectToFind = cell.objectToFind
       zoomedPhotoViewController.labelingJob = cell.jobUUID
+      zoomedPhotoViewController.requestingUser = cell.requestingUser
     }
   }
 
@@ -117,6 +118,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
             let jobUUID = snapshot.key
             let childVals = snapshot.value as! NSDictionary
             let objectToFind = childVals["object_to_find"]
+            let requestingUser = childVals["requesting_user"]
             let creationTime = childVals["creation_timestamp"] as! Int
             let imageRef = Storage.storage().reference(withPath: jobUUID + ".jpg")
             // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
@@ -129,7 +131,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
             imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
               if error == nil {
                 let image = UIImage(data: data!)
-                self.photos.append(["jobUUID": jobUUID, "image": image!, "object_to_find": objectToFind, "creation_timestamp": creationTime]);
+                self.photos.append(["jobUUID": jobUUID, "image": image!, "object_to_find": objectToFind, "creation_timestamp": creationTime, "requesting_user": requestingUser]);
                 self.collectionView?.reloadData()
               }
             }
@@ -171,6 +173,7 @@ extension CollectionViewController {
     cell.objectToFind = cellData["object_to_find"] as! String
     cell.jobUUID = cellData["jobUUID"] as! String
     cell.creationTimeStamp = cellData["creation_timestamp"] as! Int
+    cell.requestingUser = cellData["requesting_user"] as! String
     cell.indexPath = indexPath
     // todo: need to store this somehow
     return cell
