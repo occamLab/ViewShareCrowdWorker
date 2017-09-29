@@ -32,6 +32,11 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
+public struct LabelingImage {
+  public var image: UIImage
+  public var imageUUID: String
+}
+
 class ZoomedPhotoViewController: UIViewController {
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var scrollView: UIScrollView!
@@ -43,12 +48,14 @@ class ZoomedPhotoViewController: UIViewController {
   
   var addedOverlay : Bool = false
   var linesImageView : UIImageView?
-  var photoName: String?
-  var imageToLoad: UIImage?
+  var imagesForJob: [LabelingImage] = []
   var objectToFind: String?
   var centerPoint: CGPoint?
   var labelingJob: String?
   var requestingUser: String?
+  var additionalImagesListener: UInt?
+  var additionalImagesRef: DatabaseReference?
+  var imageIndex: Int = 0
 
   @IBAction func handleClick(_ sender: UIButton) {
     if let selected = centerPoint,
@@ -58,7 +65,8 @@ class ZoomedPhotoViewController: UIViewController {
       let conn = Database.database()
       conn.reference().child("responses/" + requestUser + "/" + jobId + "/" + labelerId).setValue([
         "x": selected.x,
-        "y": selected.y
+        "y": selected.y,
+        "imageUUID": imagesForJob[imageIndex].imageUUID
         ])
 
       conn.reference().child("notification_tokens/" + labelerId + "/assignments/" + jobId).removeValue()
@@ -67,22 +75,62 @@ class ZoomedPhotoViewController: UIViewController {
       }
     }
   }
-  
-  override func viewDidLoad() {
-    if let imageOverride = imageToLoad {
-      imageView.image = imageOverride
-      // clear the loaded image so we don't use it next time
-      imageToLoad = nil
-    } else if let photoName = photoName {
-      imageView.image = UIImage(named: photoName)
+  override func viewDidDisappear(_ animated: Bool) {
+    if additionalImagesListener != nil {
+      additionalImagesRef?.removeObserver(withHandle: additionalImagesListener!)
     }
+  }
+  override func viewDidLoad() {
+    imageIndex = 0
+    imageView.image = imagesForJob[imageIndex].image
+    // clear the loaded image so we don't use it next time
     objectText.text = objectToFind
     objectText.textColor = UIColor(displayP3Red: 1.0,
                                    green: 0.0,
                                    blue: 0.0,
                                    alpha: 1.0)
+    additionalImagesRef = Database.database().reference(withPath: "labeling_jobs/" + labelingJob! + "/additional_images")
+    additionalImagesListener = additionalImagesRef?.observe(DataEventType.childAdded, with: { (snapshot) in
+      // let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+      let jobUUID = snapshot.key
+      let imageRef = Storage.storage().reference(withPath: jobUUID + ".jpg")
+      imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+        if error == nil {
+          let image = UIImage(data: data!)
+          self.imagesForJob.append(LabelingImage(image: image!, imageUUID: jobUUID))
+        }
+      }
+    })
+    addSwipe()
   }
-
+  
+  func addSwipe() {
+    let directions: [UISwipeGestureRecognizerDirection] = [.right, .left]
+    for direction in directions {
+      let gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+      gesture.direction = direction
+      self.view.addGestureRecognizer(gesture)
+    }
+  }
+  
+  @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+    if gesture.direction == UISwipeGestureRecognizerDirection.right {
+      imageIndex = imageIndex - 1
+      if imageIndex < 0 {
+        imageIndex = imagesForJob.count - 1
+      }
+      imageView.image = imagesForJob[imageIndex].image
+    }
+    else if gesture.direction == UISwipeGestureRecognizerDirection.left {
+      imageIndex = imageIndex + 1
+      // I wish we could just do modulus, but it is easily not available in Swift
+      if imageIndex == imagesForJob.count {
+        imageIndex = 0;
+      }
+      imageView.image = imagesForJob[imageIndex].image
+    }
+  }
+  
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
     updateMinZoomScaleForSize(view.bounds.size)

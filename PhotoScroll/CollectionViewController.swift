@@ -82,7 +82,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let cell = sender as? PhotoCell,
       let zoomedPhotoViewController = segue.destination as? ZoomedPhotoViewController {
-      zoomedPhotoViewController.imageToLoad = cell.fullSizedImage
+      zoomedPhotoViewController.imagesForJob = [LabelingImage(image: cell.fullSizedImage, imageUUID: cell.jobUUID)]
       zoomedPhotoViewController.objectToFind = cell.objectToFind
       zoomedPhotoViewController.labelingJob = cell.jobUUID
       zoomedPhotoViewController.requestingUser = cell.requestingUser

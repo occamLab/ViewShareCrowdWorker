@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Access the storyboard and fetch an instance of the view controller
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController: ZoomedPhotoViewController = storyboard.instantiateViewController(withIdentifier: "PhotoViewController") as! ZoomedPhotoViewController
-            viewController.imageToLoad = image
+            viewController.imagesForJob = [LabelingImage(image:image!, imageUUID: jobUUID)]
             viewController.objectToFind = value!["object_to_find"] as? String
             viewController.labelingJob = jobUUID
             viewController.requestingUser = value!["requesting_user"] as? String
