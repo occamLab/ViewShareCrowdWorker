@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -83,10 +84,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1J-YS-OHy">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="459"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="409"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="Ve5-7J-0me">
-                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photo1" translatesAutoresizingMaskIntoConstraints="NO" id="Ve5-7J-0me">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="409"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -99,34 +100,40 @@
                                     <outlet property="delegate" destination="Tou-yP-mjQ" id="bET-6T-MzB"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ph-ow-lFc">
-                                <rect key="frame" x="313" y="508" width="47" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ph-ow-lFc">
+                                <rect key="frame" x="312" y="429" width="47" height="30"/>
                                 <state key="normal" title="Locate"/>
                                 <connections>
                                     <action selector="handleClick:" destination="Tou-yP-mjQ" eventType="touchUpInside" id="m1L-VL-jyJ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhO-ae-4hB">
-                                <rect key="frame" x="16" y="487" width="270" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="842-Me-JQJ">
-                                <rect key="frame" x="0.0" y="441" width="375" height="75"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="842-Me-JQJ">
+                                <rect key="frame" x="0.0" y="484" width="375" height="75"/>
                                 <connections>
                                     <segue destination="A00-jt-8I1" kind="embed" id="rSq-V9-1V3"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhO-ae-4hB">
+                                <rect key="frame" x="16" y="429" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="g1J-YS-OHy" secondAttribute="trailing" id="66t-bn-d3y"/>
-                            <constraint firstItem="Tte-qg-mzd" firstAttribute="top" secondItem="g1J-YS-OHy" secondAttribute="bottom" constant="100" id="aob-uc-bJ4"/>
+                            <constraint firstItem="842-Me-JQJ" firstAttribute="leading" secondItem="dBF-SA-UXb" secondAttribute="leading" id="IZG-Gq-7tj"/>
+                            <constraint firstItem="1Ph-ow-lFc" firstAttribute="trailing" secondItem="dBF-SA-UXb" secondAttribute="trailingMargin" id="K6I-kc-cPt"/>
+                            <constraint firstAttribute="trailing" secondItem="842-Me-JQJ" secondAttribute="trailing" id="Uqt-ws-Zpk"/>
+                            <constraint firstItem="PhO-ae-4hB" firstAttribute="top" secondItem="g1J-YS-OHy" secondAttribute="bottom" constant="20" id="aAd-4W-yWU"/>
+                            <constraint firstItem="Tte-qg-mzd" firstAttribute="top" secondItem="g1J-YS-OHy" secondAttribute="bottom" constant="150" id="aob-uc-bJ4"/>
+                            <constraint firstItem="1Ph-ow-lFc" firstAttribute="trailing" secondItem="dBF-SA-UXb" secondAttribute="trailingMargin" id="dk0-ZX-H13"/>
+                            <constraint firstItem="PhO-ae-4hB" firstAttribute="leading" secondItem="dBF-SA-UXb" secondAttribute="leadingMargin" id="eKX-Rs-3ZY"/>
+                            <constraint firstItem="842-Me-JQJ" firstAttribute="top" secondItem="PhO-ae-4hB" secondAttribute="bottom" constant="34.5" id="gsK-KV-H3l"/>
+                            <constraint firstItem="1Ph-ow-lFc" firstAttribute="top" secondItem="g1J-YS-OHy" secondAttribute="bottom" constant="20" id="hgh-7R-Aas"/>
                             <constraint firstItem="g1J-YS-OHy" firstAttribute="top" secondItem="ySi-Sp-ZBB" secondAttribute="bottom" id="p2i-nA-NhA"/>
+                            <constraint firstItem="Tte-qg-mzd" firstAttribute="top" secondItem="842-Me-JQJ" secondAttribute="bottom" id="pre-9J-6DU"/>
                             <constraint firstItem="g1J-YS-OHy" firstAttribute="leading" secondItem="dBF-SA-UXb" secondAttribute="leading" id="voE-pb-Hai"/>
                         </constraints>
                     </view>
@@ -181,7 +188,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="PreviewPhotoCell" id="wVu-BX-PbS" customClass="PreviewPhotoCell" customModule="FindIt" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PreviewPhotoCell" id="wVu-BX-PbS" customClass="PreviewPhotoCell" customModule="FindIt" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="42" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">

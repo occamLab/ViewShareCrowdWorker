@@ -141,6 +141,7 @@ class ZoomedPhotoViewController: UIViewController {
       if imageIndex < 0 {
         imageIndex = imagesForJob.count - 1
       }
+      
       imageView.image = imagesForJob[imageIndex]?.image
       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didSelectNewImage"), object:nil, userInfo: ["photoIndex": imageIndex])
     }
@@ -163,7 +164,7 @@ class ZoomedPhotoViewController: UIViewController {
   fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
     let widthScale = size.width / imageView.bounds.width
     let heightScale = size.height / imageView.bounds.height
-    let minScale = min(widthScale, heightScale)
+    let minScale = min(widthScale, heightScale)*0.75
     
     scrollView.minimumZoomScale = minScale
     scrollView.zoomScale = minScale
