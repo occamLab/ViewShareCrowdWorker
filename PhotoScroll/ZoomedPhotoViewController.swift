@@ -45,10 +45,11 @@ class ZoomedPhotoViewController: UIViewController {
   @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
   @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
   @IBOutlet weak var objectText: UILabel!
+  @IBOutlet weak var previewView: UIView!
   
   var addedOverlay : Bool = false
   var linesImageView : UIImageView?
-  var imagesForJob: [LabelingImage] = []
+  var imagesForJob = [Int: LabelingImage]()
   var objectToFind: String?
   var centerPoint: CGPoint?
   var labelingJob: String?
@@ -56,7 +57,8 @@ class ZoomedPhotoViewController: UIViewController {
   var additionalImagesListener: UInt?
   var additionalImagesRef: DatabaseReference?
   var imageIndex: Int = 0
-
+  var additionalImageCounter: Int = 0
+  
   @IBAction func handleClick(_ sender: UIButton) {
     if let selected = centerPoint,
        let jobId = labelingJob,
@@ -66,7 +68,7 @@ class ZoomedPhotoViewController: UIViewController {
       conn.reference().child("responses/" + requestUser + "/" + jobId + "/" + labelerId).setValue([
         "x": selected.x,
         "y": selected.y,
-        "imageUUID": imagesForJob[imageIndex].imageUUID
+        "imageUUID": imagesForJob[imageIndex]?.imageUUID
         ])
 
       conn.reference().child("notification_tokens/" + labelerId + "/assignments/" + jobId).removeValue()
@@ -75,35 +77,55 @@ class ZoomedPhotoViewController: UIViewController {
       }
     }
   }
+
   override func viewDidDisappear(_ animated: Bool) {
     if additionalImagesListener != nil {
       additionalImagesRef?.removeObserver(withHandle: additionalImagesListener!)
     }
   }
+
   override func viewDidLoad() {
     imageIndex = 0
-    imageView.image = imagesForJob[imageIndex].image
-    // clear the loaded image so we don't use it next time
+    imageView.image = imagesForJob[imageIndex]?.image
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
     objectText.text = objectToFind
     objectText.textColor = UIColor(displayP3Red: 1.0,
                                    green: 0.0,
                                    blue: 0.0,
                                    alpha: 1.0)
     additionalImagesRef = Database.database().reference(withPath: "labeling_jobs/" + labelingJob! + "/additional_images")
-    additionalImagesListener = additionalImagesRef?.observe(DataEventType.childAdded, with: { (snapshot) in
-      // let postDict = snapshot.value as? [String : AnyObject] ?? [:]
+    additionalImagesListener = additionalImagesRef?.queryOrdered(byChild: "imageSequenceNumber").observe(DataEventType.childAdded, with: { (snapshot) in
+      self.additionalImageCounter += 1
+      let myAdditionalImageIndex = self.additionalImageCounter
       let jobUUID = snapshot.key
-      let imageRef = Storage.storage().reference(withPath: jobUUID + ".jpg")
-      imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
-        if error == nil {
-          let image = UIImage(data: data!)
-          self.imagesForJob.append(LabelingImage(image: image!, imageUUID: jobUUID))
+      let imageFilePath = jobUUID + ".jpg"
+
+      if appDelegate.imageCache[imageFilePath] != nil {
+        self.imagesForJob[myAdditionalImageIndex] = LabelingImage(image: appDelegate.imageCache[imageFilePath]!, imageUUID: jobUUID)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "gotNewPreviewImage"), object: nil)
+      } else {
+        let imageRef = Storage.storage().reference(withPath: imageFilePath)
+        imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
+          if error == nil {
+            let image = UIImage(data: data!)
+            appDelegate.imageCache[imageFilePath] = image
+            self.imagesForJob[myAdditionalImageIndex] = LabelingImage(image: image!, imageUUID: jobUUID)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "gotNewPreviewImage"), object: nil)
+          }
         }
       }
     })
     addSwipe()
+    NotificationCenter.default.addObserver(self, selector: #selector(self.previewImageSelected), name: NSNotification.Name(rawValue: "selectedPreviewImage"), object: nil)
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didSelectNewImage"), object:nil, userInfo: ["photoIndex": imageIndex])
   }
   
+  @objc func previewImageSelected(notif: NSNotification) {
+    imageView.image = notif.userInfo?["previewImage"] as? UIImage
+    imageIndex = notif.userInfo?["previewImageIndex"] as! Int
+  }
+
   func addSwipe() {
     let directions: [UISwipeGestureRecognizerDirection] = [.right, .left]
     for direction in directions {
@@ -119,7 +141,8 @@ class ZoomedPhotoViewController: UIViewController {
       if imageIndex < 0 {
         imageIndex = imagesForJob.count - 1
       }
-      imageView.image = imagesForJob[imageIndex].image
+      imageView.image = imagesForJob[imageIndex]?.image
+      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didSelectNewImage"), object:nil, userInfo: ["photoIndex": imageIndex])
     }
     else if gesture.direction == UISwipeGestureRecognizerDirection.left {
       imageIndex = imageIndex + 1
@@ -127,7 +150,8 @@ class ZoomedPhotoViewController: UIViewController {
       if imageIndex == imagesForJob.count {
         imageIndex = 0;
       }
-      imageView.image = imagesForJob[imageIndex].image
+      imageView.image = imagesForJob[imageIndex]?.image
+      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didSelectNewImage"), object:nil, userInfo: ["photoIndex": imageIndex])
     }
   }
   
@@ -154,7 +178,6 @@ extension ZoomedPhotoViewController: UIScrollViewDelegate {
   }
   
   func scrollViewDidZoom(_ scrollView: UIScrollView) {
-    updateConstraintsForSize(view.bounds.size)
     drawSelectionOverlay()
   }
   
@@ -190,18 +213,6 @@ extension ZoomedPhotoViewController: UIScrollViewDelegate {
     
     // 3. END THE GRAPHICSCONTEXT
     UIGraphicsEndImageContext()
-  }
-  
-  fileprivate func updateConstraintsForSize(_ size: CGSize) {
-    let yOffset = max(0, (size.height - imageView.frame.height) / 2)
-    imageViewTopConstraint.constant = yOffset
-    imageViewBottomConstraint.constant = yOffset
-    
-    let xOffset = max(0, (size.width - imageView.frame.width) / 2)
-    imageViewLeadingConstraint.constant = xOffset
-    imageViewTrailingConstraint.constant = xOffset
-    
-    view.layoutIfNeeded()
   }
 }
 

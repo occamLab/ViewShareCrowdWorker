@@ -15,6 +15,8 @@
 		489D25A31C07787C006283B2 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D25A21C07787C006283B2 /* UIImage.swift */; };
 		48C5E5C71C0269BE007D1345 /* ZoomedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C5E5C61C0269BE007D1345 /* ZoomedPhotoViewController.swift */; };
 		5FC52AC54646DFEE29690094 /* Pods_FindIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A28101744C45205F2C1D9A30 /* Pods_FindIt.framework */; };
+		826F42DF1F7DE3C20000B934 /* PreviewCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F42DE1F7DE3C20000B934 /* PreviewCollectionViewController.swift */; };
+		826F42E11F7DEA660000B934 /* PreviewPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826F42E01F7DEA660000B934 /* PreviewPhotoCell.swift */; };
 		8274A1E81F53562A00A12B5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8274A1E71F53535900A12B5F /* GoogleService-Info.plist */; };
 		C0A24B821EC500DD006DE8A7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0A24B801EC500DD006DE8A7 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
@@ -31,6 +33,8 @@
 		48C5E5C61C0269BE007D1345 /* ZoomedPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomedPhotoViewController.swift; sourceTree = "<group>"; };
 		7F1DB1D225C268C2B894A8DF /* Pods-FindIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindIt/Pods-FindIt.debug.xcconfig"; sourceTree = "<group>"; };
 		821D10F71F3359850006331C /* FindIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FindIt.entitlements; sourceTree = "<group>"; };
+		826F42DE1F7DE3C20000B934 /* PreviewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewController.swift; sourceTree = "<group>"; };
+		826F42E01F7DEA660000B934 /* PreviewPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoCell.swift; sourceTree = "<group>"; };
 		8274A1E71F53535900A12B5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A28101744C45205F2C1D9A30 /* Pods_FindIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A24B811EC500DD006DE8A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 		489D259E1C05B452006283B2 /* zooming */ = {
 			isa = PBXGroup;
 			children = (
+				826F42DE1F7DE3C20000B934 /* PreviewCollectionViewController.swift */,
+				826F42E01F7DEA660000B934 /* PreviewPhotoCell.swift */,
 				48C5E5C61C0269BE007D1345 /* ZoomedPhotoViewController.swift */,
 			);
 			name = zooming;
@@ -234,8 +240,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-FindIt/Pods-FindIt-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebasePhoneAuthUI.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -280,6 +286,8 @@
 				481872ED1C00CD06001C3658 /* CollectionViewController.swift in Sources */,
 				48C5E5C71C0269BE007D1345 /* ZoomedPhotoViewController.swift in Sources */,
 				481872FD1C00E747001C3658 /* PhotoCell.swift in Sources */,
+				826F42E11F7DEA660000B934 /* PreviewPhotoCell.swift in Sources */,
+				826F42DF1F7DE3C20000B934 /* PreviewCollectionViewController.swift in Sources */,
 				481872EB1C00CD06001C3658 /* AppDelegate.swift in Sources */,
 				489D25A31C07787C006283B2 /* UIImage.swift in Sources */,
 			);

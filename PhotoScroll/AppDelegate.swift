@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   var apnsId: String?
+  var imageCache = [String: UIImage]()
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
@@ -62,10 +63,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let ref = Database.database().reference().child("labeling_jobs/" + jobUUID)
 
     ref.observeSingleEvent(of: .value, with: { snapshot in
-      if !snapshot.exists() { return }
-      let value = snapshot.value as? NSDictionary
-
-      if value != nil {
+      guard snapshot.exists(), let value = snapshot.value as? NSDictionary else { return }
+      Database.database().reference(withPath: ".info/serverTimeOffset").observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+        guard let clockOffset = snapshot.value as? Double else {
+          return
+        }
+        let estimatedServerTimeMs = NSDate().timeIntervalSince1970 * 1000.0 + clockOffset
+        guard let creationTimeStamp = value["creation_timestamp"] as? Double,
+              estimatedServerTimeMs - creationTimeStamp < 120*1000 else {
+          return
+        }
         let imageRef = Storage.storage().reference(withPath: jobUUID + ".jpg")
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
@@ -74,15 +81,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Access the storyboard and fetch an instance of the view controller
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController: ZoomedPhotoViewController = storyboard.instantiateViewController(withIdentifier: "PhotoViewController") as! ZoomedPhotoViewController
-            viewController.imagesForJob = [LabelingImage(image:image!, imageUUID: jobUUID)]
-            viewController.objectToFind = value!["object_to_find"] as? String
+            viewController.imagesForJob[0] = LabelingImage(image:image!, imageUUID: jobUUID)
+            viewController.objectToFind = value["object_to_find"] as? String
             viewController.labelingJob = jobUUID
-            viewController.requestingUser = value!["requesting_user"] as? String
+            viewController.requestingUser = value["requesting_user"] as? String
             // Then push that view controller onto the navigation stack
             rootViewController.pushViewController(viewController, animated: true);
           }
         }
-      }
+      })
     })
   }
   
