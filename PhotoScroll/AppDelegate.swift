@@ -126,8 +126,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print("Failed to register: \(error)")
   }
   
-  
-  
   @available(iOS 9.0, *)
   func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
     let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?

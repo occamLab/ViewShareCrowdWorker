@@ -100,13 +100,6 @@
                                     <outlet property="delegate" destination="Tou-yP-mjQ" id="bET-6T-MzB"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ph-ow-lFc">
-                                <rect key="frame" x="312" y="429" width="47" height="30"/>
-                                <state key="normal" title="Locate"/>
-                                <connections>
-                                    <action selector="handleClick:" destination="Tou-yP-mjQ" eventType="touchUpInside" id="m1L-VL-jyJ"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="842-Me-JQJ">
                                 <rect key="frame" x="0.0" y="484" width="375" height="75"/>
                                 <connections>
@@ -124,14 +117,11 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="g1J-YS-OHy" secondAttribute="trailing" id="66t-bn-d3y"/>
                             <constraint firstItem="842-Me-JQJ" firstAttribute="leading" secondItem="dBF-SA-UXb" secondAttribute="leading" id="IZG-Gq-7tj"/>
-                            <constraint firstItem="1Ph-ow-lFc" firstAttribute="trailing" secondItem="dBF-SA-UXb" secondAttribute="trailingMargin" id="K6I-kc-cPt"/>
                             <constraint firstAttribute="trailing" secondItem="842-Me-JQJ" secondAttribute="trailing" id="Uqt-ws-Zpk"/>
                             <constraint firstItem="PhO-ae-4hB" firstAttribute="top" secondItem="g1J-YS-OHy" secondAttribute="bottom" constant="20" id="aAd-4W-yWU"/>
                             <constraint firstItem="Tte-qg-mzd" firstAttribute="top" secondItem="g1J-YS-OHy" secondAttribute="bottom" constant="150" id="aob-uc-bJ4"/>
-                            <constraint firstItem="1Ph-ow-lFc" firstAttribute="trailing" secondItem="dBF-SA-UXb" secondAttribute="trailingMargin" id="dk0-ZX-H13"/>
                             <constraint firstItem="PhO-ae-4hB" firstAttribute="leading" secondItem="dBF-SA-UXb" secondAttribute="leadingMargin" id="eKX-Rs-3ZY"/>
                             <constraint firstItem="842-Me-JQJ" firstAttribute="top" secondItem="PhO-ae-4hB" secondAttribute="bottom" constant="34.5" id="gsK-KV-H3l"/>
-                            <constraint firstItem="1Ph-ow-lFc" firstAttribute="top" secondItem="g1J-YS-OHy" secondAttribute="bottom" constant="20" id="hgh-7R-Aas"/>
                             <constraint firstItem="g1J-YS-OHy" firstAttribute="top" secondItem="ySi-Sp-ZBB" secondAttribute="bottom" id="p2i-nA-NhA"/>
                             <constraint firstItem="Tte-qg-mzd" firstAttribute="top" secondItem="842-Me-JQJ" secondAttribute="bottom" id="pre-9J-6DU"/>
                             <constraint firstItem="g1J-YS-OHy" firstAttribute="leading" secondItem="dBF-SA-UXb" secondAttribute="leading" id="voE-pb-Hai"/>

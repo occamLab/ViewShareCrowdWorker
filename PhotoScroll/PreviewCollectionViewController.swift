@@ -83,7 +83,10 @@ class PreviewCollectionViewController: UICollectionViewController, UICollectionV
     previousIndexPath = indexPath
     cell.layer.borderWidth = 2
     cell.layer.borderColor = UIColor.red.cgColor
-
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "selectedPreviewImage"), object:nil, userInfo: ["previewImage": cell.imageView?.image, "previewImageIndex": indexPath.row])
+    
+    guard let selectedImage = cell.imageView?.image else {
+      return
+    }
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "selectedPreviewImage"), object:nil, userInfo: ["previewImage": selectedImage, "previewImageIndex": indexPath.row])
   }
 }

@@ -59,18 +59,17 @@ class ZoomedPhotoViewController: UIViewController {
   var imageIndex: Int = 0
   var additionalImageCounter: Int = 0
   
-  @IBAction func handleClick(_ sender: UIButton) {
-    if let selected = centerPoint,
-       let jobId = labelingJob,
-       let requestUser = requestingUser,
-       let labelerId = Auth.auth().currentUser?.uid {
+  func handleLocated(location: CGPoint) {
+    if let jobId = labelingJob,
+      let requestUser = requestingUser,
+      let labelerId = Auth.auth().currentUser?.uid {
       let conn = Database.database()
       conn.reference().child("responses/" + requestUser + "/" + jobId + "/" + labelerId).setValue([
-        "x": selected.x,
-        "y": selected.y,
-        "imageUUID": imagesForJob[imageIndex]?.imageUUID
+        "x": location.x,
+        "y": location.y,
+        "imageUUID": imagesForJob[imageIndex]?.imageUUID ?? ""
         ])
-
+      
       conn.reference().child("notification_tokens/" + labelerId + "/assignments/" + jobId).removeValue()
       if navigationController != nil {  // might not need this (due to optional below)
         navigationController?.popViewController(animated: true)
@@ -119,8 +118,19 @@ class ZoomedPhotoViewController: UIViewController {
     addSwipe()
     NotificationCenter.default.addObserver(self, selector: #selector(self.previewImageSelected), name: NSNotification.Name(rawValue: "selectedPreviewImage"), object: nil)
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didSelectNewImage"), object:nil, userInfo: ["photoIndex": imageIndex])
+    let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(ZoomedPhotoViewController.handleLongPress(_:)))
+    longPressGesture.cancelsTouchesInView = false
+    scrollView.addGestureRecognizer(longPressGesture)
   }
   
+  @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer){
+    if gesture.state == .ended {
+      let touchLocation = gesture.location(in: scrollView)
+      let locationCoordinate = scrollView.convert(touchLocation, to: imageView)
+      handleLocated(location: locationCoordinate)
+    }
+  }
+
   @objc func previewImageSelected(notif: NSNotification) {
     imageView.image = notif.userInfo?["previewImage"] as? UIImage
     imageIndex = notif.userInfo?["previewImageIndex"] as! Int
@@ -176,44 +186,6 @@ class ZoomedPhotoViewController: UIViewController {
 extension ZoomedPhotoViewController: UIScrollViewDelegate {
   func viewForZooming(in scrollView: UIScrollView) -> UIView? {
     return imageView
-  }
-  
-  func scrollViewDidZoom(_ scrollView: UIScrollView) {
-    drawSelectionOverlay()
-  }
-  
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    drawSelectionOverlay()
-  }
-  
-  private func drawSelectionOverlay() {
-    let scrollViewBounds = scrollView.convert(scrollView.bounds, to:imageView)
-    centerPoint = CGPoint(x:scrollViewBounds.midX, y:scrollViewBounds.midY)
-    
-    // 1. CREATE A IMAGE GRAPHICS CONTEXT AND DRAW LINES ON IT
-    UIGraphicsBeginImageContext(imageView.image!.size)
-
-    if let currentContext = UIGraphicsGetCurrentContext() {
-      let theCenter : CGPoint = CGPoint(x: imageView.bounds.width / 2, y: imageView.bounds.height / 2)
-      currentContext.setFillColor(UIColor.init(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5).cgColor)
-      currentContext.addRect(CGRect(x:centerPoint!.x-10, y:centerPoint!.y-10, width:20, height:20))
-      currentContext.drawPath(using: .fillStroke)
-      
-      // 2. CREATE AN IMAGE OF THE DRAWN LINES AND ADD TO THE BOARD
-      if let linesImage : UIImage = UIGraphicsGetImageFromCurrentImageContext() {
-        if addedOverlay {
-          linesImageView!.image = linesImage
-        } else {
-          linesImageView = UIImageView(image: linesImage)
-          imageView.addSubview(linesImageView!)
-        }
-        linesImageView!.center = theCenter
-        addedOverlay = true
-      }
-    }
-    
-    // 3. END THE GRAPHICSCONTEXT
-    UIGraphicsEndImageContext()
   }
 }
 
