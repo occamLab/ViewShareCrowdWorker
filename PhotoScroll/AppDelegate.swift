@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   var apnsId: String?
-  var imageCache = [String: UIImage]()
+  var imageCache = [String: LabelingImage]()
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     FirebaseApp.configure()
@@ -114,7 +114,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UNUserNotificationCenter.current().getNotificationSettings { (settings) in
       print("Notification settings: \(settings)")
       guard settings.authorizationStatus == .authorized else { return }
-      UIApplication.shared.registerForRemoteNotifications()
+      DispatchQueue.main.async(execute: {
+        UIApplication.shared.registerForRemoteNotifications()
+      })
     }
   }
   func application(_ application: UIApplication,
