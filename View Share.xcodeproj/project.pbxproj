@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		481872E71C00CD06001C3658 /* FindIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		481872E71C00CD06001C3658 /* View Share.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "View Share.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		481872EA1C00CD06001C3658 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		481872EC1C00CD06001C3658 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		481872EF1C00CD06001C3658 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 		481872E81C00CD06001C3658 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				481872E71C00CD06001C3658 /* FindIt.app */,
+				481872E71C00CD06001C3658 /* View Share.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,9 +137,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		481872E61C00CD06001C3658 /* FindIt */ = {
+		481872E61C00CD06001C3658 /* View Share */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 481872F91C00CD06001C3658 /* Build configuration list for PBXNativeTarget "FindIt" */;
+			buildConfigurationList = 481872F91C00CD06001C3658 /* Build configuration list for PBXNativeTarget "View Share" */;
 			buildPhases = (
 				120F5F15411EDAB3D1A6E0FC /* [CP] Check Pods Manifest.lock */,
 				481872E31C00CD06001C3658 /* Sources */,
@@ -152,9 +152,9 @@
 			);
 			dependencies = (
 			);
-			name = FindIt;
+			name = "View Share";
 			productName = PhotoScroll;
-			productReference = 481872E71C00CD06001C3658 /* FindIt.app */;
+			productReference = 481872E71C00CD06001C3658 /* View Share.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +182,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 481872E21C00CD06001C3658 /* Build configuration list for PBXProject "FindIt" */;
+			buildConfigurationList = 481872E21C00CD06001C3658 /* Build configuration list for PBXProject "View Share" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -195,7 +195,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				481872E61C00CD06001C3658 /* FindIt */,
+				481872E61C00CD06001C3658 /* View Share */,
 			);
 		};
 /* End PBXProject section */
@@ -429,7 +429,7 @@
 				INFOPLIST_FILE = PhotoScroll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.occamlab.findit;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.occamlab.viewshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 3.0;
@@ -447,7 +447,7 @@
 				INFOPLIST_FILE = PhotoScroll/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.occamlab.findit;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.occamlab.viewshare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 3.0;
@@ -458,7 +458,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		481872E21C00CD06001C3658 /* Build configuration list for PBXProject "FindIt" */ = {
+		481872E21C00CD06001C3658 /* Build configuration list for PBXProject "View Share" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				481872F71C00CD06001C3658 /* Debug */,
@@ -467,7 +467,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		481872F91C00CD06001C3658 /* Build configuration list for PBXNativeTarget "FindIt" */ = {
+		481872F91C00CD06001C3658 /* Build configuration list for PBXNativeTarget "View Share" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				481872FA1C00CD06001C3658 /* Debug */,
