@@ -65,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				821D10F71F3359850006331C /* FindIt.entitlements */,
-				481872E91C00CD06001C3658 /* PhotoScroll */,
+				481872E91C00CD06001C3658 /* ViewShare */,
 				481872E81C00CD06001C3658 /* Products */,
 				5B6DF38EC160FFB26DD04E31 /* Pods */,
 				219E88EC1CC612B697E94867 /* Frameworks */,
@@ -82,7 +82,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		481872E91C00CD06001C3658 /* PhotoScroll */ = {
+		481872E91C00CD06001C3658 /* ViewShare */ = {
 			isa = PBXGroup;
 			children = (
 				8274A1E71F53535900A12B5F /* GoogleService-Info.plist */,
@@ -95,7 +95,7 @@
 				C0A24B801EC500DD006DE8A7 /* LaunchScreen.xib */,
 				481872F61C00CD06001C3658 /* Info.plist */,
 			);
-			path = PhotoScroll;
+			path = ViewShare;
 			sourceTree = "<group>";
 		};
 		489D259E1C05B452006283B2 /* zooming */ = {
