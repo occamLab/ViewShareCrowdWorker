@@ -61,6 +61,11 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     super.viewDidLoad()
     self.auth = Auth.auth()
     self.authUI = FUIAuth.defaultAuthUI()
+    self.authUI?.delegate = self
+    let providers: [FUIAuthProvider] = [
+      FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()!),
+      ]
+    self.authUI?.providers = providers
     registerForLoginCallbacks()
     
     if auth?.currentUser == nil {
@@ -91,8 +96,6 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   }
 
   func login() {
-    authUI?.delegate = self
-    authUI?.providers = [FUIPhoneAuth(authUI:authUI!)]
     let authViewController = authUI?.authViewController()
     self.present(authViewController!, animated: true, completion: nil)
   }
