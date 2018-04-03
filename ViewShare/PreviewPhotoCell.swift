@@ -1,6 +1,6 @@
 //
 //  PreviewPhotoCell.swift
-//  FindIt
+//  View Share
 //
 //  Created by Paul Ruvolo on 9/28/17.
 //  Copyright © 2017 occamlab. All rights reserved.

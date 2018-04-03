@@ -13,7 +13,7 @@
         <!--Assignments-->
         <scene sceneID="HLg-nF-QcR">
             <objects>
-                <collectionViewController id="Dz9-ob-7Jl" customClass="CollectionViewController" customModule="FindIt" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="Dz9-ob-7Jl" customClass="CollectionViewController" customModule="ViewShare" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gVo-6Z-tf9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -25,7 +25,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="buF-rK-ntA" customClass="PhotoCell" customModule="FindIt" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCell" id="buF-rK-ntA" customClass="PhotoCell" customModule="ViewShare" customModuleProvider="target">
                                 <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -74,7 +74,7 @@
         <!--Zoomed Photo View Controller-->
         <scene sceneID="BWF-Mm-sV7">
             <objects>
-                <viewController storyboardIdentifier="PhotoViewController" id="Tou-yP-mjQ" customClass="ZoomedPhotoViewController" customModule="FindIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoViewController" id="Tou-yP-mjQ" customClass="ZoomedPhotoViewController" customModule="ViewShare" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ySi-Sp-ZBB"/>
                         <viewControllerLayoutGuide type="bottom" id="Tte-qg-mzd"/>
@@ -166,7 +166,7 @@
         <!--Preview Collection View Controller-->
         <scene sceneID="dsX-XE-Rjd">
             <objects>
-                <viewController id="A00-jt-8I1" customClass="PreviewCollectionViewController" customModule="FindIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="A00-jt-8I1" customClass="PreviewCollectionViewController" customModule="ViewShare" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" id="2xI-07-xtL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -178,7 +178,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PreviewPhotoCell" id="wVu-BX-PbS" customClass="PreviewPhotoCell" customModule="FindIt" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PreviewPhotoCell" id="wVu-BX-PbS" customClass="PreviewPhotoCell" customModule="ViewShare" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="42" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
