@@ -49,6 +49,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
     if error != nil {
       //Problem signing in
+      print("ERROR is not nil", error)
       login()
     }
   }
@@ -57,16 +58,22 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     try! Auth.auth().signOut()
   }
 
+  
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.auth = Auth.auth()
     self.authUI = FUIAuth.defaultAuthUI()
     self.authUI?.delegate = self
     let providers: [FUIAuthProvider] = [
-      FUIPhoneAuth(authUI:FUIAuth.defaultAuthUI()!),
+      FUIPhoneAuth.init(authUI: FUIAuth.defaultAuthUI()!)
       ]
     self.authUI?.providers = providers
     registerForLoginCallbacks()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
     if auth?.currentUser == nil {
       login()
@@ -97,7 +104,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
 
   func login() {
     let authViewController = authUI?.authViewController()
-    self.present(authViewController!, animated: true, completion: nil)
+    self.present(authViewController!, animated: true)
   }
   
   func registerForLoginCallbacks() {

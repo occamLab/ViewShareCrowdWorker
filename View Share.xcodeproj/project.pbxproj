@@ -33,6 +33,7 @@
 		48838FB65DF3E2E706824579 /* Pods-View Share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-View Share.debug.xcconfig"; path = "Pods/Target Support Files/Pods-View Share/Pods-View Share.debug.xcconfig"; sourceTree = "<group>"; };
 		489D25A21C07787C006283B2 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		48C5E5C61C0269BE007D1345 /* ZoomedPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomedPhotoViewController.swift; sourceTree = "<group>"; };
+		820C4B9D2073DEA10023A3F6 /* View Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "View Share.entitlements"; sourceTree = "<group>"; };
 		821D10F71F3359850006331C /* ViewShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ViewShare.entitlements; sourceTree = "<group>"; };
 		826F42DE1F7DE3C20000B934 /* PreviewCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewController.swift; sourceTree = "<group>"; };
 		826F42E01F7DEA660000B934 /* PreviewPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoCell.swift; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 		481872DE1C00CD06001C3658 = {
 			isa = PBXGroup;
 			children = (
+				820C4B9D2073DEA10023A3F6 /* View Share.entitlements */,
 				821D10F71F3359850006331C /* ViewShare.entitlements */,
 				481872E91C00CD06001C3658 /* ViewShare */,
 				481872E81C00CD06001C3658 /* Products */,
@@ -225,6 +227,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -232,6 +235,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,12 +429,12 @@
 			baseConfigurationReference = 48838FB65DF3E2E706824579 /* Pods-View Share.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ViewShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "View Share.entitlements";
 				DEVELOPMENT_TEAM = 787TUDMR8Q;
 				INFOPLIST_FILE = ViewShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.occamlab.viewshare;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.occamlab.viewsharecrowdworker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 3.0;
@@ -443,12 +447,12 @@
 			baseConfigurationReference = 97E4E41FC5CB0582D834CFD5 /* Pods-View Share.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ViewShare.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "View Share.entitlements";
 				DEVELOPMENT_TEAM = 787TUDMR8Q;
 				INFOPLIST_FILE = ViewShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.occamlab.viewshare;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.occamlab.viewsharecrowdworker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 3.0;
