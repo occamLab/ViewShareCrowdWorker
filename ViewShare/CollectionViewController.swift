@@ -49,7 +49,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
     if error != nil {
       //Problem signing in
-      print("ERROR is not nil", error)
+      print("ERROR is not nil", error!)
       login()
     }
   }
