@@ -1,0 +1,6 @@
+framework module Pods_View_Share {
+  umbrella header "Pods-View Share-umbrella.h"
+
+  export *
+  module * { export * }
+}
