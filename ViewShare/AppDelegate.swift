@@ -32,7 +32,7 @@ import UIKit
 import UserNotifications
 import Firebase
 import FirebaseAuth
-import FirebaseAuthUI
+import FirebaseUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

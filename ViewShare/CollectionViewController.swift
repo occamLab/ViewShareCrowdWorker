@@ -31,8 +31,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-import FirebaseAuthUI
-import FirebasePhoneAuthUI
+import FirebaseUI
 
 class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   fileprivate let reuseIdentifier = "PhotoCell"
@@ -109,18 +108,18 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   
   func registerForLoginCallbacks() {
     Auth.auth().addStateDidChangeListener { auth, user in
-      if user != nil {
+      if let activeUser = user, let fcmToken = Messaging.messaging().fcmToken {
         // User is signed in.
-        Database.database().reference(withPath: "/account_mapping/" + Messaging.messaging().fcmToken!).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+        Database.database().reference(withPath: "/account_mapping/" + fcmToken).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
           if snapshot.exists() {
-            Database.database().reference(withPath: "/notification_tokens/" + (snapshot.value as! String) + "/" + Messaging.messaging().fcmToken!).removeValue()
+            Database.database().reference(withPath: "/notification_tokens/" + (snapshot.value as! String) + "/" + fcmToken).removeValue()
           }
           // grab ownership of the token
-          Database.database().reference(withPath: "/account_mapping/" + Messaging.messaging().fcmToken!).setValue(user!.uid)
-          Database.database().reference(withPath: "/notification_tokens/" + user!.uid + "/" + Messaging.messaging().fcmToken!).setValue(true)
+          Database.database().reference(withPath: "/account_mapping/" + fcmToken).setValue(activeUser.uid)
+          Database.database().reference(withPath: "/notification_tokens/" + activeUser.uid + "/" + fcmToken).setValue(true)
         });
 
-        self.userAssignmentsRef = Database.database().reference(withPath: "/notification_tokens/" + user!.uid + "/assignments")
+        self.userAssignmentsRef = Database.database().reference(withPath: "/notification_tokens/" + activeUser.uid + "/assignments")
         let offsetRef = Database.database().reference(withPath: ".info/serverTimeOffset")
         offsetRef.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
           self.clockOffset = snapshot.value as? Double
@@ -186,7 +185,6 @@ extension CollectionViewController {
     cell.creationTimeStamp = cellData["creation_timestamp"] as! Int
     cell.requestingUser = cellData["requesting_user"] as! String
     cell.indexPath = indexPath
-    // todo: need to store this somehow
     return cell
   }
 }
