@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>View Share</title>
+	</head>
+	<body>
+		<p>This is where you can interact with the images</p>
+	</body>
+
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyBakHl5BORexlsuMT2jUxi5PgQOnuKSco8",
+	    authDomain: "object-locator.firebaseapp.com",
+	    databaseURL: "https://object-locator.firebaseio.com",
+	    projectId: "object-locator",
+	    storageBucket: "object-locator.appspot.com",
+	    messagingSenderId: "876037163064"
+	  };
+	  //firebase.initializeApp(config);
+	  console.log(config)
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+	<!--<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>-->
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-storage.js"></script>
+
+
+
+	<script type="text/javascript">
+		var app = firebase.initializeApp(config);
+		var database = app.database();
+		var userInfo = new Object();
+
+		firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				uid = user.uid
+				console.log(uid)
+				tokenRef = database.ref('notification_tokens/' + userID + '/assignments')
+				console.log(tokenRef.child())
+			// User is signed in.
+			} else {
+			// No user is signed in.
+				return null;
+			}
+		});
+
+		initApp = function() {
+			firebase.auth().onAuthStateChanged(function(user) {
+			  if (user) {
+			    // User is signed in.
+			    uid = user.uid;
+			    user.getIdToken().then(function(accessToken) {
+					//console.log(uid)
+			      //}, null, '  ');
+				});
+			  } else {
+			    // User is signed out.
+				console.log('oops');
+			  }
+			}, function(error) {
+			  console.log(error);
+			});
+		};
+		window.addEventListener('load', function() {
+			initApp()
+		});
+
+		function getUID() {
+			firebase.auth().onAuthStateChanged(function(user) {
+				if (user) {
+					uid = user.uid
+					console.log(uid)
+					return uid;
+				// User is signed in.
+				} else {
+				// No user is signed in.
+					return null;
+				}
+			});
+		}
+		function getJobRef(userID, database) {
+			tokenRef = database.ref('notification_tokens/' + userID + '/assignments')
+			return tokenRef;
+		}
+		var uid = getUID();
+		var ref = getJobRef(uid, database);
+		console.log(ref.child());
+
+    </script>
+
+
+
+
+
+
+	<!--<script>
+		console.log("test2")
+		//var app = firebase.initializeApp(config);
+
+		console.log(uid);
+
+		// You can retrieve services via the defaultApp variable...
+		var storage = app.storage();
+		var imagesRef = storage.ref();
+		var image = imagesRef.child('1699041B-14DC-4C3F-BC73-1A570D205060.jpg');
+		image.getDownloadURL().then(function(url) {
+			var img = document.createElement('img');
+			img.src = url;
+			document.body.appendChild(img);
+		})
+			// }).catch(function(error) {
+			//   // Handle any errors
+			// });
+
+		//	console.log(img);
+
+
+		var database = app.database();
+
+
+		var jobRef = database.ref('/labeling_jobs');
+		console.log(5+5);
+
+	</script>-->
+</html>
