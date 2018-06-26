@@ -9,17 +9,14 @@
 
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 	<script>
-	  // Initialize Firebase
-	  var config = {
-	    apiKey: "AIzaSyBakHl5BORexlsuMT2jUxi5PgQOnuKSco8",
-	    authDomain: "object-locator.firebaseapp.com",
-	    databaseURL: "https://object-locator.firebaseio.com",
-	    projectId: "object-locator",
-	    storageBucket: "object-locator.appspot.com",
-	    messagingSenderId: "876037163064"
-	  };
-	  //firebase.initializeApp(config);
-	  console.log(config)
+		var config = {
+		apiKey: "AIzaSyBakHl5BORexlsuMT2jUxi5PgQOnuKSco8",
+		authDomain: "object-locator.firebaseapp.com",
+		databaseURL: "https://object-locator.firebaseio.com",
+		projectId: "object-locator",
+		storageBucket: "object-locator.appspot.com",
+		messagingSenderId: "876037163064"
+		};
 	</script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
@@ -33,13 +30,36 @@
 		var app = firebase.initializeApp(config);
 		var database = app.database();
 		var userInfo = new Object();
+		var storage = app.storage();
+		var imagesRef = storage.ref()
 
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
-				uid = user.uid
-				console.log(uid)
-				tokenRef = database.ref('notification_tokens/' + userID + '/assignments')
-				console.log(tokenRef.child())
+				uid = user.uid;
+				console.log(uid);
+				//tokenRef = database.ref('notification_tokens/' + uid + '/assignments')
+				// TODO: for some reason the job doesnt send to every user, currently pulling job for other user
+
+				var tokenRef = database.ref('notification_tokens/' + 'laGeRkBi3Ndkjt1GnpME1b2FsuA2' + '/assignments');
+				tokenRef.once('value').then(function(snapshot){
+					var jobID = Object.keys(snapshot.val())[0];
+					console.log(jobID);
+
+					var jobRef = database.ref('labeling_jobs/' + jobID + '/additional_images');
+					jobRef.once('value').then(function(snapshot) {
+						var imageArray = Object.keys(snapshot.val());
+						imageArray.push(jobID);
+						for (i = 0; i < imageArray.length; i++) {
+							var image = imagesRef.child(imageArray[i] + '.jpg');
+							image.getDownloadURL().then(function(url) {
+								var img = document.createElement('img');
+								img.src = url;
+								document.body.appendChild(img);
+							})
+						}
+					})
+				})
+
 			// User is signed in.
 			} else {
 			// No user is signed in.
@@ -87,7 +107,7 @@
 		}
 		var uid = getUID();
 		var ref = getJobRef(uid, database);
-		console.log(ref.child());
+		console.log(uid);
 
     </script>
 
