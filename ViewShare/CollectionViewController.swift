@@ -33,18 +33,49 @@ import Firebase
 import FirebaseAuth
 import FirebaseUI
 
+/**
+ The purpose of the `CollectionViewController` view controller is to provide an interface where a user can view available jobs and to handle signing in with FirebaseAuth.
+ 
+ It corresponds to the Assignments scene in the *Main.storyboard* file, and there is a toolbar with a logout button and a UIImageView in that scene.
+ 
+ The `CollectionViewController` class is a subclass of the `UICollectionViewController` and it conforms to the `FUIAuthDelegate` protocol.
+ 
+ - TODO: Finish documenting.
+ */
 class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
+  
+  /// Not sure yet what reuseIdentifier actually does
   fileprivate let reuseIdentifier = "PhotoCell"
+  
+  /// Defines the size of a thumbnail
   fileprivate let thumbnailSize = CGSize(width: 70.0, height: 70.0)
+  
+  /// Defines the margins of the thumbnails
   fileprivate let sectionInsets = UIEdgeInsets(top: 10, left: 5.0, bottom: 10.0, right: 5.0)
 
+  /// Declare array of photos, corresponding to a job. Each element will be a dictionary containing the UUID of the job, an image, the object to find, the timestamp, and the ID of the requester.
   fileprivate var photos = [] as Array
+  
   @IBOutlet weak var logoutButton: UIBarButtonItem!
+  
+  /// Um idk yet
   var auth: Auth?
+  
+  /// Um idk
   var authUI: FUIAuth?
+  
+  /// Um idk
   var clockOffset: Double?
+  
+  /// Um idk
   var userAssignmentsRef: DatabaseReference?
   
+  /// If there was a problem signing in, reload the login UI
+  ///
+  /// - Parameters:
+  ///   - authUI: Firebase view controller for login
+  ///   - user: Firebase auth user
+  ///   - error: Error that occurred
   func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
     if error != nil {
       //Problem signing in
@@ -53,12 +84,16 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     }
   }
   
+  /// Triggers log out with Firebase Auth
+  ///
+  /// - Parameter sender: The logout button in the toolbar
   @IBAction func handleSelect(_ sender: Any) {
     try! Auth.auth().signOut()
   }
 
   
   
+  /// Add Firebase configuration and call `registerForLoginCallbacks()`
   override func viewDidLoad() {
     super.viewDidLoad()
     self.auth = Auth.auth()
@@ -71,6 +106,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     registerForLoginCallbacks()
   }
   
+  /// If user is not logged in, call `login()`
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -79,6 +115,9 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     }
   }
 
+  /// Determines whether to open a job (segue to `ZoomedPhotoViewController`) or not.
+  ///
+  /// If a job is more than 2 minutes old, it is removed from the database and the segue is not performed. Otherwise, the segue is performed and the job is opened.
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
     let estimatedServerTimeMs = NSDate().timeIntervalSince1970 * 1000.0 + self.clockOffset!
     if let cell = sender as? PhotoCell {
@@ -91,9 +130,11 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     return true
   }
 
+  /// Configures new `ZoomedPhotoViewController` with data about the job.
+  ///
+  /// Data: the first image, the object to find, the job UUID, and the requesting user.
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let cell = sender as? PhotoCell,
-      let zoomedPhotoViewController = segue.destination as? ZoomedPhotoViewController {
+    if let cell = sender as? PhotoCell, let zoomedPhotoViewController = segue.destination as? ZoomedPhotoViewController {
       zoomedPhotoViewController.imagesForJob[0] = LabelingImage(image: cell.fullSizedImage, imageUUID: cell.jobUUID)
       zoomedPhotoViewController.objectToFind = cell.objectToFind
       zoomedPhotoViewController.labelingJob = cell.jobUUID
@@ -101,11 +142,25 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     }
   }
 
+  /// Presents the Firebase Auth view controller for login
   func login() {
     let authViewController = authUI?.authViewController()
     self.present(authViewController!, animated: true)
   }
   
+  /// Performs callbacks once logged in.
+  ///
+  /// - TODO: Not sure if reloading collection view when job is removed is threadsafe.
+  ///
+  /// Actions performed in callbacks:
+  /// * Remove an old notification token, if it exists
+  /// * Set user as value to the Firebase cloud messaging token associated with the user's device
+  /// * Set a new notification token for this user
+  /// * Get pending assignments
+  ///   * Check if too old (older than 2 minutes)
+  ///   * Download associated images
+  /// * Reload collection if a job is removed
+  /// * If no user is signed in, cleanup all observers and go to login
   func registerForLoginCallbacks() {
     Auth.auth().addStateDidChangeListener { auth, user in
       if let activeUser = user, let fcmToken = Messaging.messaging().fcmToken {
