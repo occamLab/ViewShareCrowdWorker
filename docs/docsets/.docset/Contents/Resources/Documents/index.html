@@ -13,7 +13,7 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (14% documented)</p>
+        <p><a href="index.html"> Docs</a> (30% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -68,18 +68,122 @@
             
             <h1 id='viewshare' class='heading'>ViewShare</h1>
 
-<p>ViewShare uses crowdsourcing to enable a user to find objects in cluttered environments. A user who is blind can open ViewShare and request to find an object. A user who is sighted can click on objects they are told to find in pictures. The app uses ARKit to localize the objects for the user who is blind. </p>
+<p>crowdsourcing object location in cluttered environments</p>
+<h2 id='contents' class='heading'>Contents</h2>
 
-<p>TODO: Improve this description. Also finish the rest of this&hellip;</p>
+<ul>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#setup-and-dependencies">Setup and dependencies</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#current-status">Current status</a></li>
+<li><a href="#troubleshooting-and-resources">Troubleshooting and Resources</a></li>
+</ul>
+<h2 id='overview' class='heading'>Overview</h2>
+
+<p>ViewShare uses crowdsourcing to enable a user to find objects in cluttered environments. A user who is blind can open ViewShare and request to find an object. Doing this sends a notification to a crowdworker, who can then click on the object in a series of pictures. The app then uses ARKit to localize the objects in 3D for the original requester with haptic feedback.</p>
+
+<p>Part of the goal of ViewShare is to serve as an example framework of a crowdworker app, which we believe to be a useful tool for future researchers at our lab. More information coming soon!</p>
+
+<p>ViewShare is being developed by <a href="http://occam.olin.edu/">OCCaM Lab</a> at the <a href="http://olin.edu/">Olin College of Engineering</a>. Currently, we are developing a <a href="https://github.com/occamLab/ViewShareCrowdWorker/tree/Webapp/Webapp">web app crowdworker interface</a> and updating documentation for the iOS app.</p>
 <h2 id='setup-and-dependencies' class='heading'>Setup and dependencies</h2>
+<h3 id='ios-app' class='heading'>iOS app</h3>
+<h4 id='requirements' class='heading'>Requirements</h4>
+
+<p>ViewShare is written in Swift 4, compatible with Xcode 3.2 or higher (from project format) and should work iOS devices with an A9 or later processor (because of ARKit).</p>
+<h4 id='cocoapods' class='heading'>CocoaPods</h4>
+
+<p>Coming soon!</p>
+<h4 id='firebase' class='heading'>Firebase</h4>
+
+<p>Coming soon!</p>
+<h4 id='jazzy' class='heading'>Jazzy</h4>
+
+<p>To generate documentation of ViewShare, use <a href="https://github.com/realm/jazzy" title="Jazzy">Jazzy</a>.</p>
+
+<p>Install:</p>
+<pre class="highlight shell"><code><span class="nb">sudo </span>gem <span class="nb">install </span>jazzy
+</code></pre>
+
+<p>Generate docs:</p>
+<pre class="highlight shell"><code>jazzy <span class="nt">--min-acl</span> internal
+</code></pre>
+
+<p>Check out the <a href="docs/">documentation</a>!</p>
+<h3 id='web-app' class='heading'>Web app</h3>
+
+<p>Coming soon!</p>
+<h2 id='how-to-run' class='heading'>How to run</h2>
+<h3 id='ios-app' class='heading'>iOS app</h3>
+
+<p>From the <code>ViewShareCrowdWorker</code> directory in Terminal, run this command:</p>
+<pre class="highlight shell"><code>open .xcworkspace
+</code></pre>
+
+<p>Press the play/build triangle in the left corner of the Xcode toolbar.</p>
+
+<p>If you have a developer signing error (which you may only see when trying to build it to a real device, instead of a simulator),</p>
+<h3 id='web-app' class='heading'>Web app</h3>
+
+<p>Coming soon!</p>
 <h2 id='architecture' class='heading'>Architecture</h2>
+
+<p>ViewShare is written in a model-view-controller framework. Much of the model is contained in the Firebase database. In the iOS app, the views and controllers are defined in the ViewController files.</p>
+<h1 id='todo-what-makes-sense' class='heading'>TODO: what makes sense</h1>
+<h1 id='todo' class='heading'>TODO:</h1>
+
+<ul>
+<li>[ ] describe iOS architecture somehow??? (this should probably be more bullet points)</li>
+<li>[ ] where does webapp fit in?</li>
+<li>[ ] what&rsquo;s up with Firebase?</li>
+<li>[ ] add link to docs</li>
+</ul>
+<h3 id='ios-app' class='heading'>iOS App</h3>
+
+<p>NOTE: this is very preliminary! Expect more complete, clear, and concise architecture descriptions coming soon.</p>
+
+<p>For more complete documentation of the iOS code, check out the docs.</p>
+
+<p>There are three ViewControllers in ViewShare iOS, each of which is primarily responsible for one of the scenes (found in the storyboard) and which interact with each other and Firebase.</p>
+<h4 id='code-collectionviewcontroller-swift-code' class='heading'><code>CollectionViewController.swift</code></h4>
+
+<p>This view controller corresponds to the Assignments Scene, which contains thumbnail UIImages corresponding to assignments for the crowdworker.</p>
+
+<p><code><a href="Classes/CollectionViewController.html">CollectionViewController</a></code> interacts with Firebase to sign in the user, as well as collect jobs from the database.</p>
+<h4 id='code-zoomedphotoviewcontroller-swift-code' class='heading'><code>ZoomedPhotoViewController.swift</code></h4>
+<h4 id='code-previewcollectionviewcontroller-swift-code' class='heading'><code>PreviewCollectionViewController.swift</code></h4>
+<h3 id='web-app' class='heading'>Web app</h3>
+<h3 id='firebase-database-structure' class='heading'>Firebase database structure</h3>
 <h2 id='current-status' class='heading'>Current status</h2>
+
+<p>Right now, the active branches are <a href="https://github.com/occamLab/ViewShareCrowdWorker/tree/add-documentation"><code>add-documentation</code></a> and <a href="https://github.com/occamLab/ViewShareCrowdWorker/tree/Webapp"><code>Webapp</code></a>. <code>add-documentation</code> is focused on getting the project as it was before (an iOS app and Firebase integration) documented, which means a comprehensive README, inline comments, and published generated documentation up. <code>Webapp</code> is focused on setting up a web-based version with the capacity of the crowdworker side of the iOS app, also integrated with Firebase.</p>
+
+<p>More detail on what exactly works and next steps coming soon!</p>
 <h2 id='troubleshooting-and-resources' class='heading'>Troubleshooting and resources</h2>
+<h3 id='using-a-mac' class='heading'>Using a Mac</h3>
+
+<p>Look <a href="http://osxdaily.com/2014/02/06/add-user-sudoers-file-mac/" title="How to Add a User to the Sudoers File in Mac OS X">here</a> for instructions to resolve this error:</p>
+<pre class="highlight plaintext"><code>username is not in the sudoers file. This incident will be reported.
+</code></pre>
+<h3 id='jazzy' class='heading'>Jazzy</h3>
+
+<p>If running Jazzy errors on</p>
+<pre class="highlight plaintext"><code>Could not parse compiler arguments from `xcodebuild` output
+</code></pre>
+
+<p>and the <code>`xcodebuild`</code> log file reads</p>
+<pre class="highlight plaintext"><code>xcode-select: error: toll 'xcodebuild' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
+</code></pre>
+
+<p>try</p>
+<pre class="highlight plaintext"><code>sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+</code></pre>
+
+<p><a href="https://github.com/realm/jazzy/issues/781" title="Jazzy issues page">Source</a></p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-06-26)</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-06-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

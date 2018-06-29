@@ -14,7 +14,7 @@
     <a title="CollectionViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (14% documented)</p>
+        <p><a href="../index.html"> Docs</a> (30% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -73,16 +73,7 @@
 
                 </div>
               </div>
-            <p>The purpose of the <code>CollectionViewController</code> view controller is to provide an interface where a user can view available jobs and to handle signing in with FirebaseAuth.</p>
-
-<p>It corresponds to the Assignments scene in the <em>Main.storyboard</em> file, and there is a toolbar with a logout button and a UIImageView in that scene.</p>
-
-<p>The <code>CollectionViewController</code> class is a subclass of the <code>UICollectionViewController</code> and it conforms to the <code>FUIAuthDelegate</code> protocol.</p>
-<div class="aside aside-todo">
-    <p class="aside-title">Todo</p>
-    Finish documenting.
-
-</div>
+            <p>The purpose of the <code>CollectionViewController</code> class is to provide an interface where a user can view available jobs and to handle signing in with FirebaseAuth.</p>
 
           </section>
           <section class="section task-group-section">
@@ -129,7 +120,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Um idk yet</p>
+                        <p>This is something related to Firebase and I am unsure what it is.</p>
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    Clarify/understand
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -156,7 +152,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Um idk</p>
+                        <p>This is something related to Firebase and I am unsure what it is.</p>
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    Clarify/understand
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -183,7 +184,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Um idk</p>
+                        <p>I am unsure what this is.</p>
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    Clarify/understand
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -210,7 +216,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Um idk</p>
+                        <p>I am unsure what this is.</p>
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    Clarify/understand
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -237,7 +248,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>If there was a problem signing in, reload the login UI</p>
+                        <p>Reloads the login UI if there was a problem signing in</p>
 
                       </div>
                       <div class="declaration">
@@ -606,7 +617,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Assigns the data from one element from the <code>photos</code> array of dictionaries to be associated with a cell in the <code>collectionView</code>, according to the index of the element in <code>photos</code>.</p>
+
+<p>Each element contains the following (key: value):</p>
+
+<ul>
+<li><code>jobUUID</code>: the UUID for this job assigned by Firebase</li>
+<li><code>image</code>: the <code>UIImage</code> object of this job</li>
+<li><code>object_to_find</code>: the <code>String</code> representing the object to find in this job</li>
+<li><code>creation_timestamp</code>: the time the job was created</li>
+<li><code>requesting_user</code>: the UUID of the requesting user</li>
+</ul>
 
                       </div>
                       <div class="declaration">
@@ -624,10 +645,10 @@
             </div>
             <div class="task-group">
               <div class="task-name-container">
-                <a name="/UICollectionViewDataSource2"></a>
-                <a name="//apple_ref/swift/Section/UICollectionViewDataSource" class="dashAnchor"></a>
-                <a href="#/UICollectionViewDataSource2">
-                  <h3 class="section-name">UICollectionViewDataSource</h3>
+                <a name="/UICollectionViewDelegateFlowLayout"></a>
+                <a name="//apple_ref/swift/Section/UICollectionViewDelegateFlowLayout" class="dashAnchor"></a>
+                <a href="#/UICollectionViewDelegateFlowLayout">
+                  <h3 class="section-name">UICollectionViewDelegateFlowLayout</h3>
                 </a>
               </div>
               <ul>
@@ -644,7 +665,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Sets the size of a cell to <code>thumbnailSize</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -671,7 +692,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Sets the margins for each cell to <code>sectionInsets</code></p>
 
                       </div>
                       <div class="declaration">
@@ -690,7 +711,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-06-26)</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-06-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

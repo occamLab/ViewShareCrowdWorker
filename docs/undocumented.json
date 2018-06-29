@@ -100,43 +100,22 @@
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 59,
+      "line": 52,
       "symbol": "CollectionViewController.logoutButton",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 225,
+      "line": 226,
       "symbol": "CollectionViewController.numberOfSections(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 229,
+      "line": 230,
       "symbol": "CollectionViewController.collectionView(_:numberOfItemsInSection:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 233,
-      "symbol": "CollectionViewController.collectionView(_:cellForItemAt:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 250,
-      "symbol": "CollectionViewController.collectionView(_:layout:sizeForItemAt:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 254,
-      "symbol": "CollectionViewController.collectionView(_:layout:insetForSectionAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
@@ -194,104 +173,6 @@
       "line": 40,
       "symbol": "PhotoCell.creationTimeStamp",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 12,
-      "symbol": "PreviewCollectionViewController",
-      "symbol_kind": "source.lang.swift.decl.class",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 13,
-      "symbol": "PreviewCollectionViewController.imageTest",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 17,
-      "symbol": "PreviewCollectionViewController.imageJobs",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 18,
-      "symbol": "PreviewCollectionViewController.previousIndexPath",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 20,
-      "symbol": "PreviewCollectionViewController.viewDidLoad()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 25,
-      "symbol": "PreviewCollectionViewController.imageSelected(notif:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 38,
-      "symbol": "PreviewCollectionViewController.gotNewPreviewImage(notif:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 44,
-      "symbol": "PreviewCollectionViewController.numberOfSections(in:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 48,
-      "symbol": "PreviewCollectionViewController.collectionView(_:numberOfItemsInSection:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 52,
-      "symbol": "PreviewCollectionViewController.collectionView(_:cellForItemAt:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 64,
-      "symbol": "PreviewCollectionViewController.collectionView(_:layout:sizeForItemAt:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 68,
-      "symbol": "PreviewCollectionViewController.collectionView(_:layout:insetForSectionAt:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 71,
-      "symbol": "PreviewCollectionViewController.removeSelectionBorder()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewCollectionViewController.swift",
-      "line": 78,
-      "symbol": "PreviewCollectionViewController.collectionView(_:didSelectItemAt:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {

@@ -33,15 +33,8 @@ import Firebase
 import FirebaseAuth
 import FirebaseUI
 
-/**
- The purpose of the `CollectionViewController` view controller is to provide an interface where a user can view available jobs and to handle signing in with FirebaseAuth.
- 
- It corresponds to the Assignments scene in the *Main.storyboard* file, and there is a toolbar with a logout button and a UIImageView in that scene.
- 
- The `CollectionViewController` class is a subclass of the `UICollectionViewController` and it conforms to the `FUIAuthDelegate` protocol.
- 
- - TODO: Finish documenting.
- */
+
+/// The purpose of the `CollectionViewController` class is to provide an interface where a user can view available jobs and to handle signing in with FirebaseAuth.
 class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   
   /// Not sure yet what reuseIdentifier actually does
@@ -58,19 +51,27 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
   
   @IBOutlet weak var logoutButton: UIBarButtonItem!
   
-  /// Um idk yet
+  /// This is something related to Firebase and I am unsure what it is.
+  ///
+  /// - TODO: Clarify/understand
   var auth: Auth?
   
-  /// Um idk
+  /// This is something related to Firebase and I am unsure what it is.
+  ///
+  /// - TODO: Clarify/understand
   var authUI: FUIAuth?
   
-  /// Um idk
+  /// I am unsure what this is.
+  ///
+  /// - TODO: Clarify/understand
   var clockOffset: Double?
   
-  /// Um idk
+  /// I am unsure what this is.
+  ///
+  /// - TODO: Clarify/understand
   var userAssignmentsRef: DatabaseReference?
   
-  /// If there was a problem signing in, reload the login UI
+  /// Reloads the login UI if there was a problem signing in
   ///
   /// - Parameters:
   ///   - authUI: Firebase view controller for login
@@ -230,6 +231,14 @@ extension CollectionViewController {
     return photos.count
   }
   
+  /// Assigns the data from one element from the `photos` array of dictionaries to be associated with a cell in the `collectionView`, according to the index of the element in `photos`.
+  ///
+  /// Each element contains the following (key: value):
+  /// * `jobUUID`: the UUID for this job assigned by Firebase
+  /// * `image`: the `UIImage` object of this job
+  /// * `object_to_find`: the `String` representing the object to find in this job
+  /// * `creation_timestamp`: the time the job was created
+  /// * `requesting_user`: the UUID of the requesting user
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
     let cellData = photos[indexPath.row] as! NSDictionary
@@ -244,13 +253,15 @@ extension CollectionViewController {
   }
 }
 
-// MARK:UICollectionViewDelegateFlowLayout
+// MARK: UICollectionViewDelegateFlowLayout
 extension CollectionViewController : UICollectionViewDelegateFlowLayout {
   
+  /// Sets the size of a cell to `thumbnailSize`.
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return thumbnailSize
   }
   
+  /// Sets the margins for each cell to `sectionInsets`
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
     return sectionInsets
   }

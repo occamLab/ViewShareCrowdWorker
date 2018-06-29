@@ -107,70 +107,35 @@
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 109,
-      "symbol": "CollectionViewController.viewWillAppear(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 117,
-      "symbol": "CollectionViewController.shouldPerformSegue(withIdentifier:sender:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 129,
-      "symbol": "CollectionViewController.prepare(for:sender:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 139,
-      "symbol": "CollectionViewController.login()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 144,
-      "symbol": "CollectionViewController.registerForLoginCallbacks()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 205,
+      "line": 224,
       "symbol": "CollectionViewController.numberOfSections(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 209,
+      "line": 228,
       "symbol": "CollectionViewController.collectionView(_:numberOfItemsInSection:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 213,
+      "line": 232,
       "symbol": "CollectionViewController.collectionView(_:cellForItemAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 230,
+      "line": 248,
       "symbol": "CollectionViewController.collectionView(_:layout:sizeForItemAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
-      "line": 234,
+      "line": 252,
       "symbol": "CollectionViewController.collectionView(_:layout:insetForSectionAt:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
