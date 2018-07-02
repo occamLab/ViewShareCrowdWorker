@@ -54,23 +54,94 @@ class ZoomedPhotoViewController: UIViewController {
   @IBOutlet weak var objectText: UILabel!
   @IBOutlet weak var previewView: UIView!
   
+  /// Keeps track of whether or not the overlay has been added.
+  ///
+  /// I am unsure if this is actually used.
+  ///
+  /// - TODO: Clarify what this means.
   var addedOverlay : Bool = false
+  
+  /// Instantiates an image view.
+  ///
+  /// Unsure if this is called or what it means.
+  ///
+  /// - TODO: Clarify what this means.
   var linesImageView : UIImageView?
+  
+  /// Keeps track of all images associated with the job.
+  ///
+  /// Every entry in this dictionary has a key representing which image it is chronologically and a value that contains the `UIImage` object, the UUID associated with it, and a `Bool` keeping track of whether or not it has been labeled.
+  ///
+  /// This property is configured in `CollectionViewController.prepare(for:sender:)`.
   var imagesForJob = [Int: LabelingImage]()
+  
+  /// The text from the requesting user representing the object to find.
+  ///
+  /// This property is configured in `CollectionViewController.prepare(for:sender:)`.
   var objectToFind: String?
+  
+  /// An object to hold a point.
+  ///
+  /// - TODO: Find out if this is used anywhere.
   var centerPoint: CGPoint?
+  
+  /// The UUID associated with the job in the database.
+  ///
+  /// This property is configured in `CollectionViewController.prepare(for:sender:)`.
   var labelingJob: String?
+  
+  /// The ID of the requesting user in the database.
+  ///
+  /// This property is configured in `CollectionViewController.prepare(for:sender:)`.
   var requestingUser: String?
+  
+  /// A handle used to unregister the block that observes changes in the Firebase database at the path specified by `additionalImagesRef`.
+  ///
+  /// - SeeAlso: [the Firebase documentation](https://firebase.google.com/docs/reference/swift/firebasedatabase/api/reference/Classes/DatabaseReference#/c:objc(cs)FIRDatabaseReference(im)observeEventType:withBlock:) for more details.
   var additionalImagesListener: UInt?
+  
+  /// A reference to the Firebase database.
+  ///
+  /// Refers to path labeling_jobs/<labeling job UUID>/additional_images
   var additionalImagesRef: DatabaseReference?
+  
+  /// A handle used to unregister the block that observes changes in the Firebase database at the path specified by `jobStatusRef`.
+  ///
+  /// - SeeAlso: [the Firebase documentation](https://firebase.google.com/docs/reference/swift/firebasedatabase/api/reference/Classes/DatabaseReference#/c:objc(cs)FIRDatabaseReference(im)observeEventType:withBlock:) for more details.
   var jobStatusListener: UInt?
+  
+  /// A reference to the Firebase database.
+  ///
+  /// Refers to the path labeling_jobs/<labeling job UUID>
   var jobStatusRef: DatabaseReference?
+  
+  /// A timer to wait for a response from the requesting user side.
+  ///
+  /// This is used to wait 3 seconds (hardcoded) for a response from the requesting user side to know if we need additional images to determine the location of the object to find.
   var waitForResponseTimer: Timer?
+  
+  /// Represents whether an additional image is needed or not.
+  ///
+  /// Updated by listening to job status through the Firebase database.
+  ///
+  /// - SeeAlso: `jobStatusListener`.
   var needAdditionalImage: Bool = false;
 
+  /// Index of current image in `imagesForJob` object.
   var imageIndex: Int = 0
+  
+  /// Keeps track of number of additional images associated with the job.
+  ///
+  /// Updated by listening for additional images through the Firebase database.
+  ///
+  /// - SeeAlso: `additionalImagesListener`.
   var additionalImageCounter: Int = 0
   
+  /// Posts location of point clicked in image, waits to know if additional images are needed, and deletes job from database if it is complete.
+  ///
+  /// This is communicating through the Firebase database. The location clicked is posted to the path responses/<requesting user ID>/<job ID>/<labeler ID + UUID>/. It waits for 3 seconds to find out if the job needs additional images from the job status listener (listening to labeling_jobs/<labeling job UUID>/<job status>). If no additional image is needed, it removes the job from the database at path notification_tokens/<labeler ID>/assignments/<job ID>.
+  ///
+  /// - Parameter location: point selected by crowdworker indicating where object to find is in image.
   func handleLocated(location: CGPoint) {
     if let jobId = labelingJob,
       let requestUser = requestingUser,
@@ -96,6 +167,11 @@ class ZoomedPhotoViewController: UIViewController {
     }
   }
   
+  /// Detach the blocks listening to the Firebase database for additional images and job status.
+  ///
+  /// - SeeAlso:
+  ///   - `additionalImagesListener`
+  ///   - `jobStatusListener`
   override func viewDidDisappear(_ animated: Bool) {
     if additionalImagesListener != nil {
       additionalImagesRef?.removeObserver(withHandle: additionalImagesListener!)
@@ -103,6 +179,13 @@ class ZoomedPhotoViewController: UIViewController {
     }
   }
 
+  /// Initializes image view, text field, and listeners to the Firebase database.
+  ///
+  /// Job Status Listener: If the job status changes (to `waitingForAdditionalReponse`), sets the `needAdditionalImage` property to `true`, which prevents the app from segue until the job is actually complete.
+  ///
+  /// Additional Images Listener: If/when an additional image is added to the database, increments the property `additionalImageCounter`,
+  ///
+  /// - TODO: finish commenting
   override func viewDidLoad() {
     imageIndex = 0
     imageView.image = imagesForJob[imageIndex]?.image

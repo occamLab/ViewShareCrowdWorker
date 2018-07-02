@@ -14,7 +14,7 @@
     <a title="ZoomedPhotoViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (30% documented)</p>
+        <p><a href="../index.html"> Docs</a> (48% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -316,7 +316,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Keeps track of whether or not the overlay has been added.</p>
+
+<p>I am unsure if this is actually used.</p>
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    Clarify what this means.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -343,7 +350,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Instantiates an image view.</p>
+
+<p>Unsure if this is called or what it means.</p>
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    Clarify what this means.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -370,7 +384,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Keeps track of all images associated with the job.</p>
+
+<p>Every entry in this dictionary has a key representing which image it is chronologically and a value that contains the <code>UIImage</code> object, the UUID associated with it, and a <code>Bool</code> keeping track of whether or not it has been labeled.</p>
+
+<p>This property is configured in <code><a href="../Classes/CollectionViewController.html#/c:@M@View_Share@objc(cs)CollectionViewController(im)prepareForSegue:sender:">CollectionViewController.prepare(for:sender:)</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -397,7 +415,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The text from the requesting user representing the object to find.</p>
+
+<p>This property is configured in <code><a href="../Classes/CollectionViewController.html#/c:@M@View_Share@objc(cs)CollectionViewController(im)prepareForSegue:sender:">CollectionViewController.prepare(for:sender:)</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -424,7 +444,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An object to hold a point.</p>
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    Find out if this is used anywhere.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -451,7 +476,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The UUID associated with the job in the database.</p>
+
+<p>This property is configured in <code><a href="../Classes/CollectionViewController.html#/c:@M@View_Share@objc(cs)CollectionViewController(im)prepareForSegue:sender:">CollectionViewController.prepare(for:sender:)</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -478,7 +505,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The ID of the requesting user in the database.</p>
+
+<p>This property is configured in <code><a href="../Classes/CollectionViewController.html#/c:@M@View_Share@objc(cs)CollectionViewController(im)prepareForSegue:sender:">CollectionViewController.prepare(for:sender:)</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -505,7 +534,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A handle used to unregister the block that observes changes in the Firebase database at the path specified by <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC19additionalImagesRefXevp">additionalImagesRef</a></code>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="https://firebase.google.com/docs/reference/swift/firebasedatabase/api/reference/Classes/DatabaseReference#/c:objc(cs)FIRDatabaseReference(im)observeEventType:withBlock:">the Firebase documentation</a> for more details.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -532,7 +566,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A reference to the Firebase database.</p>
+
+<p>Refers to path labeling_jobs/<labeling job UUID>/additional_images</p>
 
                       </div>
                       <div class="declaration">
@@ -559,7 +595,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A handle used to unregister the block that observes changes in the Firebase database at the path specified by <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC12jobStatusRefXevp">jobStatusRef</a></code>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <a href="https://firebase.google.com/docs/reference/swift/firebasedatabase/api/reference/Classes/DatabaseReference#/c:objc(cs)FIRDatabaseReference(im)observeEventType:withBlock:">the Firebase documentation</a> for more details.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -586,7 +627,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A reference to the Firebase database.</p>
+
+<p>Refers to the path labeling_jobs/<labeling job UUID></p>
 
                       </div>
                       <div class="declaration">
@@ -613,7 +656,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A timer to wait for a response from the requesting user side.</p>
+
+<p>This is used to wait 3 seconds (hardcoded) for a response from the requesting user side to know if we need additional images to determine the location of the object to find.</p>
 
                       </div>
                       <div class="declaration">
@@ -640,7 +685,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Represents whether an additional image is needed or not.</p>
+
+<p>Updated by listening to job status through the Firebase database.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC17jobStatusListenerSuSgvp">jobStatusListener</a></code>.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -667,7 +719,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Index of current image in <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC12imagesForJobs10DictionaryVySiAA13LabelingImageCGvp">imagesForJob</a></code> object.</p>
 
                       </div>
                       <div class="declaration">
@@ -694,7 +746,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Keeps track of number of additional images associated with the job.</p>
+
+<p>Updated by listening for additional images through the Firebase database.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC24additionalImagesListenerSuSgvp">additionalImagesListener</a></code>.
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -721,7 +780,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Posts location of point clicked in image, waits to know if additional images are needed, and deletes job from database if it is complete.</p>
+
+<p>This is communicating through the Firebase database. The location clicked is posted to the path responses/<requesting user ID>/<job ID>/<labeler ID + UUID>/. It waits for 3 seconds to find out if the job needs additional images from the job status listener (listening to labeling_jobs/<labeling job UUID>/<job status>). If no additional image is needed, it removes the job from the database at path notification_tokens/<labeler ID>/assignments/<job ID>.</p>
 
                       </div>
                       <div class="declaration">
@@ -731,6 +792,25 @@
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">handleLocated</span><span class="p">(</span><span class="nv">location</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>location</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>point selected by crowdworker indicating where object to find is in image.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -748,7 +828,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Detach the blocks listening to the Firebase database for additional images and job status.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <ul>
+<li><code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC24additionalImagesListenerSuSgvp">additionalImagesListener</a></code></li>
+<li><code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC17jobStatusListenerSuSgvp">jobStatusListener</a></code></li>
+</ul>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -775,7 +863,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes image view, text field, and listeners to the Firebase database.</p>
+
+<p>Job Status Listener: If the job status changes (to <code>waitingForAdditionalReponse</code>), sets the <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC19needAdditionalImageSbvp">needAdditionalImage</a></code> property to <code>true</code>, which prevents the app from segue until the job is actually complete.</p>
+
+<p>Additional Images Listener: If/when an additional image is added to the database, increments the property <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC22additionalImageCounterSivp">additionalImageCounter</a></code>,</p>
+<div class="aside aside-todo">
+    <p class="aside-title">Todo</p>
+    finish commenting
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -1048,7 +1145,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-06-29)</p>
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-07-02)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
