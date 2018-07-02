@@ -23,13 +23,39 @@ ViewShare is being developed by [OCCaM Lab](http://occam.olin.edu/) at the [Olin
 
 ### iOS app
 
+To use on your computer, clone this repository and open it by `cd`ing into your `ViewShareCrowdWorker` repository and typing `open View\ Share.xcworkspace`. (You should always open the workspace so it works well with CocoaPods).
+
+
 #### Requirements
 
 ViewShare is written in Swift 4, compatible with Xcode 3.2 or higher (from project format) and should work iOS devices with an A9 or later processor (because of ARKit).
 
 #### CocoaPods
 
-Coming soon!
+[CocoaPods](https://cocoapods.org/) is a package manager for Swift projects.
+
+To install, run:
+
+```bash
+sudo gem install cocoapods
+```
+
+To install the dependencies for this project and then open it:
+
+```bash
+cd ViewShareCrowdWorker
+open View\ Share.xcworkspace
+```
+
+To add a new Pod to the project, add it to your Podfile. You can go to [cocoapods.org](cocoapods.org), search for your pod, and find TODO ADD MORE HERE. Once you've modified your Podfile, run:
+
+```bash
+pod install
+```
+
+This should add that dependency to the project.
+
+For more information, check out the [CocoaPods Guides](guides.cocoapods.org)!
 
 #### Firebase
 
@@ -37,21 +63,19 @@ Coming soon!
 
 #### Jazzy
 
-To generate documentation of ViewShare, use [Jazzy](https://github.com/realm/jazzy "Jazzy").
+[Jazzy](https://github.com/realm/jazzy "Jazzy") generates pretty documentation for Swift projects. See our documentation [here](occamlab.github.io/viewshare)!
 
-Install:
+To install, run:
 
 ```bash
 sudo gem install jazzy
 ```
 
-Generate docs:
+To update the documentation, run:
 
 ```bash
 jazzy --min-acl internal
 ```
-
-Check out the [documentation](docs/)!
 
 ### Web app
 
