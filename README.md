@@ -26,9 +26,9 @@ ViewShare is being developed by [OCCaM Lab](http://occam.olin.edu/) at the [Olin
 To use on your computer, clone this repository and open it by `cd`ing into your `ViewShareCrowdWorker` repository and typing `open View\ Share.xcworkspace`. (You should always open the workspace so it works well with CocoaPods).
 
 
-#### Requirements
+#### System Requirements
 
-ViewShare is written in Swift 4, compatible with Xcode 3.2 or higher (from project format) and should work iOS devices with an A9 or later processor (because of ARKit).
+ViewShare is written in Swift 4 and Xcode 9  and should work iOS devices with an A9 or later processor.
 
 #### CocoaPods
 
@@ -59,7 +59,11 @@ For more information, check out the [CocoaPods Guides](guides.cocoapods.org)!
 
 #### Firebase
 
-Coming soon!
+If you're part of OccamLab, talk to someone about getting access to the Firebase console.
+
+Otherwise, make a new project on the Firebase console. You will need to add the bundle ID that can be found in the `Info.plist` file.
+
+Download `GoogleService-Info.plist` and put it in the `ViewShareCrowdWorker` directory.
 
 #### Jazzy
 
