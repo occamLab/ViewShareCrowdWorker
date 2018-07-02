@@ -310,70 +310,35 @@
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 247,
-      "symbol": "ZoomedPhotoViewController.handleLongPress(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 255,
-      "symbol": "ZoomedPhotoViewController.previewImageSelected(notif:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 261,
-      "symbol": "ZoomedPhotoViewController.addSwipe()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 270,
-      "symbol": "ZoomedPhotoViewController.handleGesture(gesture:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 295,
-      "symbol": "ZoomedPhotoViewController.grayOutImageIfSelected()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 304,
+      "line": 313,
       "symbol": "ZoomedPhotoViewController.viewWillLayoutSubviews()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 322,
+      "line": 331,
       "symbol": "ZoomedPhotoViewController.viewForZooming(in:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 328,
+      "line": 338,
       "symbol": "ZoomedPhotoViewController.displaySpinner(onView:)",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 343,
+      "line": 353,
       "symbol": "ZoomedPhotoViewController.removeSpinner(spinner:)",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
       "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
-      "line": 351,
+      "line": 361,
       "symbol": "UIImage.tint(with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

@@ -14,7 +14,7 @@
     <a title="ZoomedPhotoViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (48% documented)</p>
+        <p><a href="../index.html"> Docs</a> (52% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -863,14 +863,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Initializes image view, text field, and listeners to the Firebase database.</p>
+                        <p>Initializes image view, text field, and listeners to the Firebase database, as well as handling swiping between images and selecting a point in the image.</p>
 
 <p>Job Status Listener: If the job status changes (to <code>waitingForAdditionalReponse</code>), sets the <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC19needAdditionalImageSbvp">needAdditionalImage</a></code> property to <code>true</code>, which prevents the app from segue until the job is actually complete.</p>
 
-<p>Additional Images Listener: If/when an additional image is added to the database, increments the property <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC22additionalImageCounterSivp">additionalImageCounter</a></code>,</p>
+<p>Additional Images Listener: If/when an additional image is added to the database, increments the property <code><a href="../Classes/ZoomedPhotoViewController.html#/s:10View_Share011ZoomedPhotoA10ControllerC22additionalImageCounterSivp">additionalImageCounter</a></code>, downloads images onto the phone, and posts to the notification center that there is a new preview image.</p>
 <div class="aside aside-todo">
     <p class="aside-title">Todo</p>
-    finish commenting
+    <ul>
+<li>add inline comments to the image caching and interaction with <code><a href="../Classes/AppDelegate.html">AppDelegate</a></code></li>
+<li>understand what&rsquo;s going on with caching and <code><a href="../Classes/AppDelegate.html">AppDelegate</a></code></li>
+</ul>
 
 </div>
 
@@ -899,7 +902,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Convert location of long press gesture on screen to location with respect to the image, then pass to <code>handleLocated</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -927,7 +930,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Changes image (in view) to image selected in the preview collection view controller.</p>
+
+<p>Called when a notification that a preview image is selected is received from <code><a href="../Classes/PreviewCollectionViewController.html">PreviewCollectionViewController</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -955,7 +960,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initialize a gesture recognizer for swiping left and right set it to call <code>handleGesture</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -982,7 +987,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Update image in view and send notification that a new image was selected to <code><a href="../Classes/PreviewCollectionViewController.html">PreviewCollectionViewController</a></code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -1010,7 +1015,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Tint image red if the image is labeled.</p>
 
                       </div>
                       <div class="declaration">
@@ -1085,6 +1090,13 @@
               </ul>
             </div>
             <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Spinner"></a>
+                <a name="//apple_ref/swift/Section/Spinner" class="dashAnchor"></a>
+                <a href="#/Spinner">
+                  <h3 class="section-name">Spinner</h3>
+                </a>
+              </div>
               <ul>
                 <li class="item">
                   <div>

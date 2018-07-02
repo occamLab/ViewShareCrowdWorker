@@ -179,13 +179,15 @@ class ZoomedPhotoViewController: UIViewController {
     }
   }
 
-  /// Initializes image view, text field, and listeners to the Firebase database.
+  /// Initializes image view, text field, and listeners to the Firebase database, as well as handling swiping between images and selecting a point in the image.
   ///
   /// Job Status Listener: If the job status changes (to `waitingForAdditionalReponse`), sets the `needAdditionalImage` property to `true`, which prevents the app from segue until the job is actually complete.
   ///
-  /// Additional Images Listener: If/when an additional image is added to the database, increments the property `additionalImageCounter`,
+  /// Additional Images Listener: If/when an additional image is added to the database, increments the property `additionalImageCounter`, downloads images onto the phone, and posts to the notification center that there is a new preview image.
   ///
-  /// - TODO: finish commenting
+  /// - TODO:
+  ///   - add inline comments to the image caching and interaction with `AppDelegate`
+  ///   - understand what's going on with caching and `AppDelegate`
   override func viewDidLoad() {
     imageIndex = 0
     imageView.image = imagesForJob[imageIndex]?.image
@@ -217,8 +219,8 @@ class ZoomedPhotoViewController: UIViewController {
     additionalImagesListener = additionalImagesRef?.queryOrdered(byChild: "imageSequenceNumber").observe(DataEventType.childAdded, with: { (snapshot) in
       self.additionalImageCounter += 1
       let myAdditionalImageIndex = self.additionalImageCounter
-      let jobUUID = snapshot.key
-      let imageFilePath = jobUUID + ".jpg"
+      let imageUUID = snapshot.key
+      let imageFilePath = imageUUID + ".jpg"
 
       if appDelegate.imageCache[imageFilePath] != nil {
         self.imagesForJob[myAdditionalImageIndex] = appDelegate.imageCache[imageFilePath]!
@@ -228,7 +230,7 @@ class ZoomedPhotoViewController: UIViewController {
         imageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
           if error == nil {
             let image = UIImage(data: data!)
-            self.imagesForJob[myAdditionalImageIndex] = LabelingImage(image: image!, imageUUID: jobUUID)
+            self.imagesForJob[myAdditionalImageIndex] = LabelingImage(image: image!, imageUUID: imageUUID)
             appDelegate.imageCache[imageFilePath] = self.imagesForJob[myAdditionalImageIndex]
 
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "gotNewPreviewImage"), object: nil)
@@ -244,6 +246,7 @@ class ZoomedPhotoViewController: UIViewController {
     scrollView.addGestureRecognizer(longPressGesture)
   }
   
+  /// Convert location of long press gesture on screen to location with respect to the image, then pass to `handleLocated`.
   @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer){
     if gesture.state == .ended && !imagesForJob[imageIndex]!.labeled {
       let touchLocation = gesture.location(in: scrollView)
@@ -252,12 +255,16 @@ class ZoomedPhotoViewController: UIViewController {
     }
   }
 
+  /// Changes image (in view) to image selected in the preview collection view controller.
+  ///
+  /// Called when a notification that a preview image is selected is received from `PreviewCollectionViewController`.
   @objc func previewImageSelected(notif: NSNotification) {
     imageView.image = notif.userInfo?["previewImage"] as? UIImage
     imageIndex = notif.userInfo?["previewImageIndex"] as! Int
     grayOutImageIfSelected()
   }
 
+  /// Initialize a gesture recognizer for swiping left and right set it to call `handleGesture`.
   func addSwipe() {
     let directions: [UISwipeGestureRecognizerDirection] = [.right, .left]
     for direction in directions {
@@ -267,6 +274,7 @@ class ZoomedPhotoViewController: UIViewController {
     }
   }
   
+  /// Update image in view and send notification that a new image was selected to `PreviewCollectionViewController`.
   @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
     if gesture.direction == UISwipeGestureRecognizerDirection.right {
       imageIndex = imageIndex - 1
@@ -292,6 +300,7 @@ class ZoomedPhotoViewController: UIViewController {
     }
   }
   
+  /// Tint image red if the image is labeled.
   func grayOutImageIfSelected() {
     guard let jobFrame = imagesForJob[imageIndex] else {
       return
@@ -324,6 +333,7 @@ extension ZoomedPhotoViewController: UIScrollViewDelegate {
   }
 }
 
+// MARK: Spinner
 extension ZoomedPhotoViewController {
   class func displaySpinner(onView : UIView) -> UIView {
     let spinnerView = UIView.init(frame: onView.bounds)
