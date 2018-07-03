@@ -65,7 +65,7 @@ For more information, check out the [CocoaPods Guides](guides.cocoapods.org)!
 
 #### Firebase
 
-If you're part of OccamLab, talk to someone about getting access to the Firebase console.
+If you're part of OccamLab, talk to someone about getting access to the Firebase console. Once you have access to the console, click the gear at the top of the menu on the left side on the screen and then choose Project settings from the options provided. Finally, scroll down to "Your Apps" and download `GoogleService-Info.plist`.
 
 Otherwise, make a new project on the Firebase console. You will need to add the bundle ID that can be found in the `Info.plist` file.
 
