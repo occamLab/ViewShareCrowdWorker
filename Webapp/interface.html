@@ -23,7 +23,7 @@
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-storage.js"></script>
-
+	<script src="uuidGenerator.js"></script> <!-- This is used to generate a UUID -->
 	<script scr='notifications.js'></script>
 
 	<script type="text/javascript">
@@ -52,9 +52,10 @@
 								var img = document.createElement('img');
 								img.src = url;
 								img.id = 'cross';
-								img.addEventListener('click', cursorClick);
+								img.addEventListener('click', function() {
+									cursorClick(event, jobID, uid, imageArray[i]);
+								});
 								document.body.appendChild(img);
-								console.log(img.naturalHeight)
 							})
 						}
 					})
@@ -66,7 +67,8 @@
 				return null;
 			}
 		});
-		function cursorClick(event) {
+		function cursorClick(event, jobID, uid, imageUUID) {
+			console.log(jobID)
 			var pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
 			var pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
 			document.getElementById("cross").style.left = (pos_x-1) ;
@@ -76,13 +78,27 @@
 			var node = document.createTextNode('x: ' + pos_x + 'y: ' + pos_y + '\n')
 			// document.pointform.form_x.value = pos_x;
 			// document.pointform.form_y.value = pos_y;
+			sendResponse(pos_x, pos_y, jobID, uid, imageUUID)
+
 			para.appendChild(node);
 			document.body.appendChild(node);
 		}
 
-		function sendResponse(x, y) {
-			requestingRef = database.ref('labeling_jobs/' + )
-			responseRef = database.ref('responses/' + response_uid + );
+		function sendResponse(pos_x, pos_y, jobID, uid, imageUUID) {
+
+			var requestingRef = database.ref('labeling_jobs/' + jobID + '/requesting_user');
+			requestingRef.once('value').then(function(snapshot) {
+				var requestingUser = snapshot.val();
+				var responseRef = database.ref('responses/' + requestingUser + '/' + jobID);
+				responseRef.child(uid + '_' + uuidv1()).set({
+					imageUUID: imageUUID,
+					x: pos_x,
+					y: pos_y
+
+				});
+				console.log(requestingUser);
+
+			});
 		}
 
 		initApp = function() {

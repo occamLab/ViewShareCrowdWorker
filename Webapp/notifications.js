@@ -57,21 +57,6 @@ console.log('Unable to get permission to notify.', err);
 function sendTokenToServer(currentToken) {
 	if (!isTokenSentToServer()) {
 		console.log('Sending token to server...');
-		// TODO(developer): Send the current token to your server.
-		sendTokenToServer(currentToken);
-		setTokenSentToServer(true);
-	} else {
-		console.log('Token already sent to server so won\'t send it again ' +
-		  'unless it changes');
-	}
-}
-
-
-
-
-function sendTokenToServer(currentToken) {
-	if (!isTokenSentToServer()) {
-		console.log('Sending token to server...');
 		console.log(currentToken);
 		// TODO(developer): Send the current token to your server.
 		var accountsRef = database.ref('/account_mapping');
