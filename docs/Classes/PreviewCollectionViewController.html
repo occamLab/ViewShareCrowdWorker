@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PreviewCollectionViewController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/PreviewCollectionViewController" class="dashAnchor"></a>
+    <a title="PreviewCollectionViewController Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (52% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        PreviewCollectionViewController Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CollectionViewController.html">CollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LabelingImage.html">LabelingImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PhotoCell.html">PhotoCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PreviewCollectionViewController.html">PreviewCollectionViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PreviewPhotoCell.html">PreviewPhotoCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ZoomedPhotoViewController.html">ZoomedPhotoViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImage.html">UIImage</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PreviewCollectionViewController</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">PreviewCollectionViewController</span> <span class="p">:</span> <span class="kt">UICollectionViewController</span><span class="p">,</span> <span class="kt">UICollectionViewDelegateFlowLayout</span></code></pre>
+
+                </div>
+              </div>
+            <p>Provides an interface for viewing the other available photos in a CollectionView that appears as a bottom bar when viewing a job.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10View_Share017PreviewCollectionA10ControllerC9imageTestSo7UIImageCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/imageTest" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10View_Share017PreviewCollectionA10ControllerC9imageTestSo7UIImageCSgvp">imageTest</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>I am unsure what this does
+In fact, does this even get used anywhere</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">imageTest</span><span class="p">:</span> <span class="kt">UIImage</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10View_Share017PreviewCollectionA10ControllerC9imageJobsSayAA13LabelingImageCGvp"></a>
+                    <a name="//apple_ref/swift/Property/imageJobs" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10View_Share017PreviewCollectionA10ControllerC9imageJobsSayAA13LabelingImageCGvp">imageJobs</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A list of images to label, held in a <code><a href="../Classes/LabelingImage.html">LabelingImage</a></code> class.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">imageJobs</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/LabelingImage.html">LabelingImage</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10View_Share017PreviewCollectionA10ControllerC17previousIndexPath10Foundation0gH0VSgvp"></a>
+                    <a name="//apple_ref/swift/Property/previousIndexPath" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10View_Share017PreviewCollectionA10ControllerC17previousIndexPath10Foundation0gH0VSgvp">previousIndexPath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">previousIndexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)viewDidLoad"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)viewDidLoad">viewDidLoad()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Listen for notifications from <code><a href="../Classes/ZoomedPhotoViewController.html">ZoomedPhotoViewController</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)imageSelectedWithNotif:"></a>
+                    <a name="//apple_ref/swift/Method/imageSelected(notif:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)imageSelectedWithNotif:">imageSelected(notif:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draw borders around the correct image in the collection if received a notification from <code><a href="../Classes/ZoomedPhotoViewController.html">ZoomedPhotoViewController</a></code> that the user swiped left or right.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">imageSelected</span><span class="p">(</span><span class="nv">notif</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>notif</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>notification</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)gotNewPreviewImageWithNotif:"></a>
+                    <a name="//apple_ref/swift/Method/gotNewPreviewImage(notif:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)gotNewPreviewImageWithNotif:">gotNewPreviewImage(notif:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reloads the collection of images if received a notification from <code><a href="../Classes/ZoomedPhotoViewController.html">ZoomedPhotoViewController</a></code> that a new preview image was received.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">gotNewPreviewImage</span><span class="p">(</span><span class="nv">notif</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>notif</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>notification</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)numberOfSectionsInCollectionView:"></a>
+                    <a name="//apple_ref/swift/Method/numberOfSections(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)numberOfSectionsInCollectionView:">numberOfSections(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set number of sections in this collection view to 1.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">numberOfSections</span><span class="p">(</span><span class="k">in</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:numberOfItemsInSection:"></a>
+                    <a name="//apple_ref/swift/Method/collectionView(_:numberOfItemsInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:numberOfItemsInSection:">collectionView(_:numberOfItemsInSection:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set number of items in this collection view to the number of images in the <code>imagesForJob</code> dictionary.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">collectionView</span><span class="p">(</span><span class="n">_</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="n">numberOfItemsInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:cellForItemAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/collectionView(_:cellForItemAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:cellForItemAtIndexPath:">collectionView(_:cellForItemAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Provides data for the cell at this index from the <code>imagesForJob</code> dictionary and draws a border.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">collectionView</span><span class="p">(</span><span class="n">_</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="n">cellForItemAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UICollectionViewCell</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:layout:sizeForItemAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/collectionView(_:layout:sizeForItemAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:layout:sizeForItemAtIndexPath:">collectionView(_:layout:sizeForItemAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets size of image to <code>thumbnailSize</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">collectionView</span><span class="p">(</span><span class="n">_</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="n">layout</span> <span class="nv">collectionViewLayout</span><span class="p">:</span> <span class="kt">UICollectionViewLayout</span><span class="p">,</span> <span class="n">sizeForItemAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGSize</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:layout:insetForSectionAtIndex:"></a>
+                    <a name="//apple_ref/swift/Method/collectionView(_:layout:insetForSectionAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:layout:insetForSectionAtIndex:">collectionView(_:layout:insetForSectionAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets margins of image to <code>sectionInsets</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">collectionView</span><span class="p">(</span><span class="n">_</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="n">layout</span> <span class="nv">collectionViewLayout</span><span class="p">:</span> <span class="kt">UICollectionViewLayout</span><span class="p">,</span> <span class="n">insetForSectionAt</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIEdgeInsets</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10View_Share017PreviewCollectionA10ControllerC21removeSelectionBorderyyF"></a>
+                    <a name="//apple_ref/swift/Method/removeSelectionBorder()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10View_Share017PreviewCollectionA10ControllerC21removeSelectionBorderyyF">removeSelectionBorder()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Removes border from the previously selected cell in the collection view.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeSelectionBorder</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:didSelectItemAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/collectionView(_:didSelectItemAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@View_Share@objc(cs)PreviewCollectionViewController(im)collectionView:didSelectItemAtIndexPath:">collectionView(_:didSelectItemAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draws a custom border and notifies <code><a href="../Classes/ZoomedPhotoViewController.html">ZoomedPhotoViewController</a></code> when an item is selected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">collectionView</span><span class="p">(</span><span class="n">_</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="n">didSelectItemAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2018-07-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
