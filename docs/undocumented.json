@@ -1,0 +1,348 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 38,
+      "symbol": "AppDelegate",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 40,
+      "symbol": "AppDelegate.window",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 41,
+      "symbol": "AppDelegate.apnsId",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 42,
+      "symbol": "AppDelegate.imageCache",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 44,
+      "symbol": "AppDelegate.application(_:didFinishLaunchingWithOptions:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 55,
+      "symbol": "AppDelegate.respondToNotification(notificationPayload:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 96,
+      "symbol": "AppDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 104,
+      "symbol": "AppDelegate.registerForPushNotifications()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 113,
+      "symbol": "AppDelegate.getNotificationSettings()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 122,
+      "symbol": "AppDelegate.application(_:didRegisterForRemoteNotificationsWithDeviceToken:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 126,
+      "symbol": "AppDelegate.application(_:didFailToRegisterForRemoteNotificationsWithError:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 132,
+      "symbol": "AppDelegate.application(_:open:options:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 138,
+      "symbol": "AppDelegate.application(_:open:sourceApplication:annotation:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/AppDelegate.swift",
+      "line": 143,
+      "symbol": "AppDelegate.handleOpenUrl(_:sourceApplication:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
+      "line": 52,
+      "symbol": "CollectionViewController.logoutButton",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
+      "line": 226,
+      "symbol": "CollectionViewController.numberOfSections(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/CollectionViewController.swift",
+      "line": 230,
+      "symbol": "CollectionViewController.collectionView(_:numberOfItemsInSection:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PhotoCell.swift",
+      "line": 33,
+      "symbol": "PhotoCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PhotoCell.swift",
+      "line": 34,
+      "symbol": "PhotoCell.imageView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PhotoCell.swift",
+      "line": 35,
+      "symbol": "PhotoCell.objectToFind",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PhotoCell.swift",
+      "line": 36,
+      "symbol": "PhotoCell.fullSizedImage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PhotoCell.swift",
+      "line": 37,
+      "symbol": "PhotoCell.jobUUID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PhotoCell.swift",
+      "line": 38,
+      "symbol": "PhotoCell.requestingUser",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PhotoCell.swift",
+      "line": 39,
+      "symbol": "PhotoCell.indexPath",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PhotoCell.swift",
+      "line": 40,
+      "symbol": "PhotoCell.creationTimeStamp",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewPhotoCell.swift",
+      "line": 12,
+      "symbol": "PreviewPhotoCell",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/PreviewPhotoCell.swift",
+      "line": 13,
+      "symbol": "PreviewPhotoCell.imageView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/UIImage.swift",
+      "line": 34,
+      "symbol": "UIImage.thumbnailOfSize(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": null,
+      "symbol": "ZoomedPhotoViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": null,
+      "symbol": "ZoomedPhotoViewController",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 35,
+      "symbol": "LabelingImage",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 36,
+      "symbol": "LabelingImage.init(image:imageUUID:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 42,
+      "symbol": "LabelingImage.image",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 43,
+      "symbol": "LabelingImage.imageUUID",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 44,
+      "symbol": "LabelingImage.labeled",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 47,
+      "symbol": "ZoomedPhotoViewController",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 48,
+      "symbol": "ZoomedPhotoViewController.imageView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 49,
+      "symbol": "ZoomedPhotoViewController.scrollView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 50,
+      "symbol": "ZoomedPhotoViewController.imageViewBottomConstraint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 51,
+      "symbol": "ZoomedPhotoViewController.imageViewLeadingConstraint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 52,
+      "symbol": "ZoomedPhotoViewController.imageViewTopConstraint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 53,
+      "symbol": "ZoomedPhotoViewController.imageViewTrailingConstraint",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 54,
+      "symbol": "ZoomedPhotoViewController.objectText",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 55,
+      "symbol": "ZoomedPhotoViewController.previewView",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 313,
+      "symbol": "ZoomedPhotoViewController.viewWillLayoutSubviews()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 331,
+      "symbol": "ZoomedPhotoViewController.viewForZooming(in:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 338,
+      "symbol": "ZoomedPhotoViewController.displaySpinner(onView:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 353,
+      "symbol": "ZoomedPhotoViewController.removeSpinner(spinner:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/louise/ViewShareCrowdWorker/ViewShare/ZoomedPhotoViewController.swift",
+      "line": 361,
+      "symbol": "UIImage.tint(with:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/louise/ViewShareCrowdWorker"
+}

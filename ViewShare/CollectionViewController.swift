@@ -33,18 +33,50 @@ import Firebase
 import FirebaseAuth
 import FirebaseUI
 
+
+/// The purpose of the `CollectionViewController` class is to provide an interface where a user can view available jobs and to handle signing in with FirebaseAuth.
 class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
+  
+  /// Not sure yet what reuseIdentifier actually does
   fileprivate let reuseIdentifier = "PhotoCell"
+  
+  /// Defines the size of a thumbnail
   fileprivate let thumbnailSize = CGSize(width: 70.0, height: 70.0)
+  
+  /// Defines the margins of the thumbnails
   fileprivate let sectionInsets = UIEdgeInsets(top: 10, left: 5.0, bottom: 10.0, right: 5.0)
 
+  /// Declare array of photos, corresponding to a job. Each element will be a dictionary containing the UUID of the job, an image, the object to find, the timestamp, and the ID of the requester.
   fileprivate var photos = [] as Array
+  
   @IBOutlet weak var logoutButton: UIBarButtonItem!
+  
+  /// This is something related to Firebase and I am unsure what it is.
+  ///
+  /// - TODO: Clarify/understand
   var auth: Auth?
+  
+  /// This is something related to Firebase and I am unsure what it is.
+  ///
+  /// - TODO: Clarify/understand
   var authUI: FUIAuth?
+  
+  /// I am unsure what this is.
+  ///
+  /// - TODO: Clarify/understand
   var clockOffset: Double?
+  
+  /// I am unsure what this is.
+  ///
+  /// - TODO: Clarify/understand
   var userAssignmentsRef: DatabaseReference?
   
+  /// Reloads the login UI if there was a problem signing in
+  ///
+  /// - Parameters:
+  ///   - authUI: Firebase view controller for login
+  ///   - user: Firebase auth user
+  ///   - error: Error that occurred
   func authUI(_ authUI: FUIAuth, didSignInWith user: User?, error: Error?) {
     if error != nil {
       //Problem signing in
@@ -53,12 +85,16 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     }
   }
   
+  /// Triggers log out with Firebase Auth
+  ///
+  /// - Parameter sender: The logout button in the toolbar
   @IBAction func handleSelect(_ sender: Any) {
     try! Auth.auth().signOut()
   }
 
   
   
+  /// Add Firebase configuration and call `registerForLoginCallbacks()`
   override func viewDidLoad() {
     super.viewDidLoad()
     self.auth = Auth.auth()
@@ -71,6 +107,7 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     registerForLoginCallbacks()
   }
   
+  /// If user is not logged in, call `login()`
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -79,6 +116,9 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     }
   }
 
+  /// Determines whether to open a job (segue to `ZoomedPhotoViewController`) or not.
+  ///
+  /// If a job is more than 2 minutes old, it is removed from the database and the segue is not performed. Otherwise, the segue is performed and the job is opened.
   override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
     let estimatedServerTimeMs = NSDate().timeIntervalSince1970 * 1000.0 + self.clockOffset!
     if let cell = sender as? PhotoCell {
@@ -91,9 +131,11 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     return true
   }
 
+  /// Configures new `ZoomedPhotoViewController` with data about the job.
+  ///
+  /// Data: the first image, the object to find, the job UUID, and the requesting user.
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let cell = sender as? PhotoCell,
-      let zoomedPhotoViewController = segue.destination as? ZoomedPhotoViewController {
+    if let cell = sender as? PhotoCell, let zoomedPhotoViewController = segue.destination as? ZoomedPhotoViewController {
       zoomedPhotoViewController.imagesForJob[0] = LabelingImage(image: cell.fullSizedImage, imageUUID: cell.jobUUID)
       zoomedPhotoViewController.objectToFind = cell.objectToFind
       zoomedPhotoViewController.labelingJob = cell.jobUUID
@@ -101,11 +143,25 @@ class CollectionViewController: UICollectionViewController, FUIAuthDelegate {
     }
   }
 
+  /// Presents the Firebase Auth view controller for login
   func login() {
     let authViewController = authUI?.authViewController()
     self.present(authViewController!, animated: true)
   }
   
+  /// Performs callbacks once logged in.
+  ///
+  /// - TODO: Not sure if reloading collection view when job is removed is threadsafe.
+  ///
+  /// Actions performed in callbacks:
+  /// * Remove an old notification token, if it exists
+  /// * Set user as value to the Firebase cloud messaging token associated with the user's device
+  /// * Set a new notification token for this user
+  /// * Get pending assignments
+  ///   * Check if too old (older than 2 minutes)
+  ///   * Download associated images
+  /// * Reload collection if a job is removed
+  /// * If no user is signed in, cleanup all observers and go to login
   func registerForLoginCallbacks() {
     Auth.auth().addStateDidChangeListener { auth, user in
       if let activeUser = user, let fcmToken = Messaging.messaging().fcmToken {
@@ -175,6 +231,14 @@ extension CollectionViewController {
     return photos.count
   }
   
+  /// Assigns the data from one element from the `photos` array of dictionaries to be associated with a cell in the `collectionView`, according to the index of the element in `photos`.
+  ///
+  /// Each element contains the following (key: value):
+  /// * `jobUUID`: the UUID for this job assigned by Firebase
+  /// * `image`: the `UIImage` object of this job
+  /// * `object_to_find`: the `String` representing the object to find in this job
+  /// * `creation_timestamp`: the time the job was created
+  /// * `requesting_user`: the UUID of the requesting user
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
     let cellData = photos[indexPath.row] as! NSDictionary
@@ -189,13 +253,15 @@ extension CollectionViewController {
   }
 }
 
-// MARK:UICollectionViewDelegateFlowLayout
+// MARK: UICollectionViewDelegateFlowLayout
 extension CollectionViewController : UICollectionViewDelegateFlowLayout {
   
+  /// Sets the size of a cell to `thumbnailSize`.
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return thumbnailSize
   }
   
+  /// Sets the margins for each cell to `sectionInsets`
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
     return sectionInsets
   }
