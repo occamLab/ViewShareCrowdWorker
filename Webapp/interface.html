@@ -48,12 +48,13 @@
 						imageArray.push(jobID);
 						for (i = 0; i < imageArray.length; i++) {
 							var image = imagesRef.child(imageArray[i] + '.jpg');
+							imageID = imageArray[i];
 							image.getDownloadURL().then(function(url) {
 								var img = document.createElement('img');
 								img.src = url;
 								img.id = 'cross';
 								img.addEventListener('click', function() {
-									cursorClick(event, jobID, uid, imageArray[i]);
+									cursorClick(event, jobID, uid, imageID);
 								});
 								document.body.appendChild(img);
 							})
@@ -74,12 +75,10 @@
 			document.getElementById("cross").style.left = (pos_x-1) ;
 			document.getElementById("cross").style.top = (pos_y-15) ;
 			document.getElementById("cross").style.visibility = "visible" ;
+			sendResponse(pos_x, pos_y, jobID, uid, imageUUID);
+
 			var para = document.createElement('p');
 			var node = document.createTextNode('x: ' + pos_x + 'y: ' + pos_y + '\n')
-			// document.pointform.form_x.value = pos_x;
-			// document.pointform.form_y.value = pos_y;
-			sendResponse(pos_x, pos_y, jobID, uid, imageUUID)
-
 			para.appendChild(node);
 			document.body.appendChild(node);
 		}
