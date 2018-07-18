@@ -1,231 +1,40 @@
-[debug] [2018-07-03T20:29:55.111Z] ----------------------------------------------------------------------
-[debug] [2018-07-03T20:29:55.112Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-03T20:29:55.112Z] CLI Version:   3.18.6
-[debug] [2018-07-03T20:29:55.112Z] Platform:      linux
-[debug] [2018-07-03T20:29:55.112Z] Node Version:  v8.11.3
-[debug] [2018-07-03T20:29:55.112Z] Time:          Tue Jul 03 2018 16:29:55 GMT-0400 (EDT)
-[debug] [2018-07-03T20:29:55.112Z] ----------------------------------------------------------------------
+[debug] [2018-07-18T18:28:56.306Z] ----------------------------------------------------------------------
+[debug] [2018-07-18T18:28:56.308Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
+[debug] [2018-07-18T18:28:56.308Z] CLI Version:   3.18.6
+[debug] [2018-07-18T18:28:56.308Z] Platform:      linux
+[debug] [2018-07-18T18:28:56.308Z] Node Version:  v8.11.3
+[debug] [2018-07-18T18:28:56.308Z] Time:          Wed Jul 18 2018 14:28:56 GMT-0400 (EDT)
+[debug] [2018-07-18T18:28:56.308Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2018-07-03T20:29:55.118Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-03T20:29:55.118Z] > authorizing via signed-in user
-[debug] [2018-07-03T20:29:55.120Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/object-locator  
-  
- Tue Jul 03 2018 16:29:55 GMT-0400 (EDT)
-[debug] [2018-07-03T20:29:55.513Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-03T20:29:55.514Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/object-locator/tokens  
-  
- Tue Jul 03 2018 16:29:55 GMT-0400 (EDT)
-[debug] [2018-07-03T20:29:56.003Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-03T20:29:56.005Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/object-locator  
-  
- Tue Jul 03 2018 16:29:56 GMT-0400 (EDT)
-[debug] [2018-07-03T20:29:56.436Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/home/diego/ViewShare/Webapp'...
-[info] 
-[debug] [2018-07-03T20:29:56.441Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/876037163064/clients/_:getWebAppConfig  
-  
- Tue Jul 03 2018 16:29:56 GMT-0400 (EDT)
-[debug] [2018-07-03T20:29:56.791Z] <<< HTTP RESPONSE 200
-[info] ✔  hosting: Local server: http://localhost:5000
-
-[debug] [2018-07-05T16:10:58.074Z] ----------------------------------------------------------------------
-[debug] [2018-07-05T16:10:58.075Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-05T16:10:58.075Z] CLI Version:   3.18.6
-[debug] [2018-07-05T16:10:58.075Z] Platform:      linux
-[debug] [2018-07-05T16:10:58.075Z] Node Version:  v8.11.3
-[debug] [2018-07-05T16:10:58.075Z] Time:          Thu Jul 05 2018 12:10:58 GMT-0400 (EDT)
-[debug] [2018-07-05T16:10:58.075Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2018-07-05T16:10:58.086Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-05T16:10:58.086Z] > authorizing via signed-in user
-[debug] [2018-07-05T16:10:58.087Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-07-05T16:10:58.087Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2018-07-18T18:28:56.316Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-07-18T18:28:56.316Z] > authorizing via signed-in user
+[debug] [2018-07-18T18:28:56.317Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-07-18T18:28:56.317Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  { refresh_token: '1/nK9e-E40TMHUP2aQP7E30IbQwjuwB-9VU_O_vYcTcpNrQdKUS3lo5t6xrQGtwit8',
   client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
   client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
   grant_type: 'refresh_token',
   scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Thu Jul 05 2018 12:10:58 GMT-0400 (EDT)
-[debug] [2018-07-05T16:10:58.257Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-05T16:10:58.262Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/object-locator  
+ Wed Jul 18 2018 14:28:56 GMT-0400 (EDT)
+[debug] [2018-07-18T18:28:56.587Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T18:28:56.598Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/object-locator  
   
- Thu Jul 05 2018 12:10:58 GMT-0400 (EDT)
-[debug] [2018-07-05T16:10:58.816Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-05T16:10:58.818Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/object-locator/tokens  
+ Wed Jul 18 2018 14:28:56 GMT-0400 (EDT)
+[debug] [2018-07-18T18:28:57.547Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T18:28:57.548Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/object-locator/tokens  
   
- Thu Jul 05 2018 12:10:58 GMT-0400 (EDT)
-[debug] [2018-07-05T16:10:59.328Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-05T16:10:59.330Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/object-locator  
+ Wed Jul 18 2018 14:28:57 GMT-0400 (EDT)
+[debug] [2018-07-18T18:28:58.153Z] <<< HTTP RESPONSE 200
+[debug] [2018-07-18T18:28:58.155Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/object-locator  
   
- Thu Jul 05 2018 12:10:59 GMT-0400 (EDT)
-[debug] [2018-07-05T16:10:59.737Z] <<< HTTP RESPONSE 200
+ Wed Jul 18 2018 14:28:58 GMT-0400 (EDT)
+[debug] [2018-07-18T18:28:58.667Z] <<< HTTP RESPONSE 200
 [info] 
 [info] === Serving from '/home/diego/ViewShare/Webapp'...
 [info] 
-[debug] [2018-07-05T16:10:59.740Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/876037163064/clients/_:getWebAppConfig  
+[debug] [2018-07-18T18:28:58.673Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/876037163064/clients/_:getWebAppConfig  
   
- Thu Jul 05 2018 12:10:59 GMT-0400 (EDT)
-[debug] [2018-07-05T16:11:00.246Z] <<< HTTP RESPONSE 200
-[info] ✔  hosting: Local server: http://localhost:5000
-
-[debug] [2018-07-06T18:16:35.516Z] ----------------------------------------------------------------------
-[debug] [2018-07-06T18:16:35.518Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-06T18:16:35.518Z] CLI Version:   3.18.6
-[debug] [2018-07-06T18:16:35.518Z] Platform:      linux
-[debug] [2018-07-06T18:16:35.518Z] Node Version:  v8.11.3
-[debug] [2018-07-06T18:16:35.518Z] Time:          Fri Jul 06 2018 14:16:35 GMT-0400 (EDT)
-[debug] [2018-07-06T18:16:35.518Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2018-07-06T18:16:35.530Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-06T18:16:35.530Z] > authorizing via signed-in user
-[debug] [2018-07-06T18:16:35.531Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-07-06T18:16:35.532Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- { refresh_token: '1/nK9e-E40TMHUP2aQP7E30IbQwjuwB-9VU_O_vYcTcpNrQdKUS3lo5t6xrQGtwit8',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Fri Jul 06 2018 14:16:35 GMT-0400 (EDT)
-[debug] [2018-07-06T18:16:35.705Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-06T18:16:35.715Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/object-locator  
-  
- Fri Jul 06 2018 14:16:35 GMT-0400 (EDT)
-[debug] [2018-07-06T18:16:36.433Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-06T18:16:36.435Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/object-locator/tokens  
-  
- Fri Jul 06 2018 14:16:36 GMT-0400 (EDT)
-[debug] [2018-07-06T18:16:36.945Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-06T18:16:36.948Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/object-locator  
-  
- Fri Jul 06 2018 14:16:36 GMT-0400 (EDT)
-[debug] [2018-07-06T18:16:37.356Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/home/diego/ViewShare/Webapp'...
-[info] 
-[debug] [2018-07-06T18:16:37.362Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/876037163064/clients/_:getWebAppConfig  
-  
- Fri Jul 06 2018 14:16:37 GMT-0400 (EDT)
-[debug] [2018-07-06T18:16:37.867Z] <<< HTTP RESPONSE 200
-[info] ✔  hosting: Local server: http://localhost:5000
-
-[debug] [2018-07-09T18:06:55.757Z] ----------------------------------------------------------------------
-[debug] [2018-07-09T18:06:55.761Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-09T18:06:55.761Z] CLI Version:   3.18.6
-[debug] [2018-07-09T18:06:55.761Z] Platform:      linux
-[debug] [2018-07-09T18:06:55.761Z] Node Version:  v8.11.3
-[debug] [2018-07-09T18:06:55.761Z] Time:          Mon Jul 09 2018 14:06:55 GMT-0400 (EDT)
-[debug] [2018-07-09T18:06:55.761Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2018-07-09T18:06:55.770Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-09T18:06:55.770Z] > authorizing via signed-in user
-[debug] [2018-07-09T18:06:55.771Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-07-09T18:06:55.771Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- { refresh_token: '1/nK9e-E40TMHUP2aQP7E30IbQwjuwB-9VU_O_vYcTcpNrQdKUS3lo5t6xrQGtwit8',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Mon Jul 09 2018 14:06:55 GMT-0400 (EDT)
-[debug] [2018-07-09T18:06:56.074Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-09T18:06:56.080Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/object-locator  
-  
- Mon Jul 09 2018 14:06:56 GMT-0400 (EDT)
-[debug] [2018-07-09T18:06:56.838Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-09T18:06:56.840Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/object-locator/tokens  
-  
- Mon Jul 09 2018 14:06:56 GMT-0400 (EDT)
-[debug] [2018-07-09T18:06:57.735Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-09T18:06:57.737Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/object-locator  
-  
- Mon Jul 09 2018 14:06:57 GMT-0400 (EDT)
-[debug] [2018-07-09T18:06:58.200Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/home/diego/ViewShare/Webapp'...
-[info] 
-[debug] [2018-07-09T18:06:58.204Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/876037163064/clients/_:getWebAppConfig  
-  
- Mon Jul 09 2018 14:06:58 GMT-0400 (EDT)
-[debug] [2018-07-09T18:06:58.879Z] <<< HTTP RESPONSE 200
-[info] ✔  hosting: Local server: http://localhost:5000
-
-[debug] [2018-07-10T10:51:05.685Z] ----------------------------------------------------------------------
-[debug] [2018-07-10T10:51:05.686Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-10T10:51:05.687Z] CLI Version:   3.18.6
-[debug] [2018-07-10T10:51:05.687Z] Platform:      linux
-[debug] [2018-07-10T10:51:05.687Z] Node Version:  v8.11.3
-[debug] [2018-07-10T10:51:05.687Z] Time:          Tue Jul 10 2018 06:51:05 GMT-0400 (EDT)
-[debug] [2018-07-10T10:51:05.687Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2018-07-10T10:51:05.693Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-10T10:51:05.693Z] > authorizing via signed-in user
-[debug] [2018-07-10T10:51:05.695Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-07-10T10:51:05.695Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- { refresh_token: '1/nK9e-E40TMHUP2aQP7E30IbQwjuwB-9VU_O_vYcTcpNrQdKUS3lo5t6xrQGtwit8',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Tue Jul 10 2018 06:51:05 GMT-0400 (EDT)
-[debug] [2018-07-10T10:51:05.902Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-10T10:51:05.904Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/object-locator  
-  
- Tue Jul 10 2018 06:51:05 GMT-0400 (EDT)
-[debug] [2018-07-10T10:51:06.414Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-10T10:51:06.414Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/object-locator/tokens  
-  
- Tue Jul 10 2018 06:51:06 GMT-0400 (EDT)
-[debug] [2018-07-10T10:51:06.826Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-10T10:51:06.826Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/object-locator  
-  
- Tue Jul 10 2018 06:51:06 GMT-0400 (EDT)
-[debug] [2018-07-10T10:51:07.545Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/home/diego/ViewShare/Webapp'...
-[info] 
-[debug] [2018-07-10T10:51:07.548Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/876037163064/clients/_:getWebAppConfig  
-  
- Tue Jul 10 2018 06:51:07 GMT-0400 (EDT)
-[debug] [2018-07-10T10:51:08.155Z] <<< HTTP RESPONSE 200
-[info] ✔  hosting: Local server: http://localhost:5000
-
-[debug] [2018-07-11T13:14:29.722Z] ----------------------------------------------------------------------
-[debug] [2018-07-11T13:14:29.724Z] Command:       /usr/bin/node /usr/local/bin/firebase serve
-[debug] [2018-07-11T13:14:29.724Z] CLI Version:   3.18.6
-[debug] [2018-07-11T13:14:29.724Z] Platform:      linux
-[debug] [2018-07-11T13:14:29.724Z] Node Version:  v8.11.3
-[debug] [2018-07-11T13:14:29.724Z] Time:          Wed Jul 11 2018 09:14:29 GMT-0400 (EDT)
-[debug] [2018-07-11T13:14:29.724Z] ----------------------------------------------------------------------
-[debug] 
-[debug] [2018-07-11T13:14:29.734Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2018-07-11T13:14:29.734Z] > authorizing via signed-in user
-[debug] [2018-07-11T13:14:29.736Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2018-07-11T13:14:29.736Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
- { refresh_token: '1/nK9e-E40TMHUP2aQP7E30IbQwjuwB-9VU_O_vYcTcpNrQdKUS3lo5t6xrQGtwit8',
-  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
-  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
-  grant_type: 'refresh_token',
-  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
- Wed Jul 11 2018 09:14:29 GMT-0400 (EDT)
-[debug] [2018-07-11T13:14:30.083Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-11T13:14:30.090Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/object-locator  
-  
- Wed Jul 11 2018 09:14:30 GMT-0400 (EDT)
-[debug] [2018-07-11T13:14:30.719Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-11T13:14:30.720Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/object-locator/tokens  
-  
- Wed Jul 11 2018 09:14:30 GMT-0400 (EDT)
-[debug] [2018-07-11T13:14:31.270Z] <<< HTTP RESPONSE 200
-[debug] [2018-07-11T13:14:31.271Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/object-locator  
-  
- Wed Jul 11 2018 09:14:31 GMT-0400 (EDT)
-[debug] [2018-07-11T13:14:31.669Z] <<< HTTP RESPONSE 200
-[info] 
-[info] === Serving from '/home/diego/ViewShare/Webapp'...
-[info] 
-[debug] [2018-07-11T13:14:31.670Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/876037163064/clients/_:getWebAppConfig  
-  
- Wed Jul 11 2018 09:14:31 GMT-0400 (EDT)
-[debug] [2018-07-11T13:14:32.169Z] <<< HTTP RESPONSE 200
+ Wed Jul 18 2018 14:28:58 GMT-0400 (EDT)
+[debug] [2018-07-18T18:28:59.141Z] <<< HTTP RESPONSE 200
 [info] ✔  hosting: Local server: http://localhost:5000
 

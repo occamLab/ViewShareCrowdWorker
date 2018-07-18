@@ -3,10 +3,13 @@
 	<head>
 		<title>View Share</title>
 	</head>
+	<div id='buttons'></div>
 	<body>
 		<p>This is where you can interact with the images</p>
+		<h3 id='objectToFind'></h3>
 	</body>
-
+	<div id='images'></div>
+	<!-- This initializes the firebase app -->
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 	<script>
 		var config = {
@@ -18,13 +21,15 @@
 		messagingSenderId: "876037163064"
 		};
 	</script>
+
+	<!-- These scripts make the different firebase functions available for use -->
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-storage.js"></script>
 	<script src="uuidGenerator.js"></script> <!-- This is used to generate a UUID -->
-	<script scr='notifications.js'></script>
+	<script scr='notifications.js'></script> <!-- This is to ensure that the user can get assigned to a job and receive notifications -->
 
 	<script type="text/javascript">
 		var app = firebase.initializeApp(config);
@@ -34,32 +39,36 @@
 
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
-				uid = user.uid;
-				console.log(uid);
+				uid = user.uid; // gets unique user id
 
-				var tokenRef = database.ref('notification_tokens/' + uid + '/assignments');
+				var tokenRef = database.ref('notification_tokens/' + uid + '/assignments'); // creates reference to the user's jobs
 				tokenRef.once('value').then(function(snapshot){
-					var jobID = Object.keys(snapshot.val())[0];
-					console.log(jobID);
+					if (snapshot.val()) { //check if there are any assignments to look at
 
-					var jobRef = database.ref('labeling_jobs/' + jobID + '/additional_images');
-					jobRef.once('value').then(function(snapshot) {
-						var imageArray = Object.keys(snapshot.val());
-						imageArray.push(jobID);
-						for (i = 0; i < imageArray.length; i++) {
-							var image = imagesRef.child(imageArray[i] + '.jpg');
-							imageID = imageArray[i];
-							image.getDownloadURL().then(function(url) {
-								var img = document.createElement('img');
-								img.src = url;
-								img.id = 'cross';
-								img.addEventListener('click', function() {
-									cursorClick(event, jobID, uid, imageID);
-								});
-								document.body.appendChild(img);
-							})
+						jobs = Object.keys(snapshot.val());
+						for (i = 0; i < jobs.length; i++) {
+							jobID = jobs[i];
+							var object = snapshot.child(jobID).child('object_to_find').val();
+							console.log(object);
+							var button = document.createElement('button');
+							//button.setAttribute('content', object);
+							button.setAttribute('class', 'option');
+							button.setAttribute('jobID', jobID)
+							button.innerHTML = object;
+
+							button.addEventListener('click', function() {
+								console.log('HIT THE BUTTON');
+								displayJob(this);
+							});
+							document.getElementById('buttons').appendChild(button);
+
 						}
-					})
+					}
+					else { //if no assignments, show the user that
+						document.getElementById('objectToFind').innerHTML = 'No images to show';
+					}
+
+
 				})
 
 			// User is signed in.
@@ -68,23 +77,50 @@
 				return null;
 			}
 		});
-		function cursorClick(event, jobID, uid, imageUUID) {
-			console.log(jobID)
+
+
+		function displayJob(element) {
+			document.getElementById('images').innerHTML = ''; //clear all the images from previously shown assignment
+
+			jobID = element.getAttribute('jobID');
+			objectToFind = element.innerHTML;
+			document.getElementById('objectToFind').innerHTML = 'Find ' + objectToFind;
+
+			var jobRef = database.ref('labeling_jobs/' + jobID + '/additional_images');
+			jobRef.on('child_added', function(childSnapshot, prevChildKey) {
+				var imageID = childSnapshot.key;
+				var image = imagesRef.child(imageID + '.jpg');
+				image.getDownloadURL().then(function(url) {
+					var img = document.createElement('img');
+					img.src = url;
+					img.id = 'cross';
+					img.setAttribute('image-UUID', imageID);
+					img.addEventListener('click', function() {
+						cursorClick(event, this, jobID, uid);
+					});
+					document.getElementById('images').appendChild(img);
+				})
+			});
+		}
+
+
+		function cursorClick(event, element, jobID, uid) {
 			var pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
 			var pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
 			document.getElementById("cross").style.left = (pos_x-1) ;
 			document.getElementById("cross").style.top = (pos_y-15) ;
 			document.getElementById("cross").style.visibility = "visible" ;
+			var imageUUID = element.getAttribute('image-UUID');
 			sendResponse(pos_x, pos_y, jobID, uid, imageUUID);
 
-			var para = document.createElement('p');
-			var node = document.createTextNode('x: ' + pos_x + 'y: ' + pos_y + '\n')
-			para.appendChild(node);
-			document.body.appendChild(node);
+				// THIS PRINTS OUT THE PIXEL LOCATION OF CLICKS ON THE PAGE
+			// var para = document.createElement('p');
+			// var node = document.createTextNode('x: ' + pos_x + 'y: ' + pos_y + '\n')
+			// para.appendChild(node);
+			// document.body.appendChild(node);
 		}
 
 		function sendResponse(pos_x, pos_y, jobID, uid, imageUUID) {
-
 			var requestingRef = database.ref('labeling_jobs/' + jobID + '/requesting_user');
 			requestingRef.once('value').then(function(snapshot) {
 				var requestingUser = snapshot.val();
@@ -111,7 +147,7 @@
 				});
 			  } else {
 			    // User is signed out.
-				console.log('oops');
+				console.log('User not signed in');
 			  }
 			}, function(error) {
 			  console.log(error);
@@ -138,9 +174,6 @@
 			tokenRef = database.ref('notification_tokens/' + userID + '/assignments')
 			return tokenRef;
 		}
-		var uid = getUID();
-		var ref = getJobRef(uid, database);
-		console.log(uid);
 
     </script>
 
