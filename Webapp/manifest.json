@@ -3,15 +3,15 @@
   "name": "View Share",
   "icons": [
     {
-      "src": "/images/icons-192.png",
+      "src": "/viewshare-app-1024.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "1024x1024"
     }
   ],
-  "start_url": "/maps/?source=pwa",
+  "start_url": "/",
   "background_color": "#3367D6",
-  "display": "standalone",
-  "scope": "/maps/",
+  "display": "browser",
+  "scope": "/",
   "theme_color": "#3367D6"
   {
   "gcm_sender_id": "103953800507"

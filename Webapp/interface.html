@@ -3,9 +3,10 @@
 	<head>
 		<title>View Share</title>
 	</head>
+	<div id='info'></div>
 	<div id='buttons'></div>
 	<body>
-		<p>This is where you can interact with the images</p>
+		<p></p>
 		<h3 id='objectToFind'></h3>
 	</body>
 	<div id='images'></div>
@@ -43,21 +44,19 @@
 
 				var tokenRef = database.ref('notification_tokens/' + uid + '/assignments'); // creates reference to the user's jobs
 				tokenRef.once('value').then(function(snapshot){
-					if (snapshot.val()) { //check if there are any assignments to look at
+					if (snapshot.val()) { 		//check if there are any assignments to look at
+						document.getElementById('info').innerHTML = 'Choose an assignment: ';
 
 						jobs = Object.keys(snapshot.val());
-						for (i = 0; i < jobs.length; i++) {
+						for (i = 0; i < jobs.length; i++) { 	//go through all the possible assignments and display a button for each one
 							jobID = jobs[i];
 							var object = snapshot.child(jobID).child('object_to_find').val();
-							console.log(object);
 							var button = document.createElement('button');
-							//button.setAttribute('content', object);
 							button.setAttribute('class', 'option');
 							button.setAttribute('jobID', jobID)
 							button.innerHTML = object;
 
-							button.addEventListener('click', function() {
-								console.log('HIT THE BUTTON');
+							button.addEventListener('click', function() {	// when the button is clicked, display all the images related to that image
 								displayJob(this);
 							});
 							document.getElementById('buttons').appendChild(button);
@@ -80,6 +79,8 @@
 
 
 		function displayJob(element) {
+			// This function clears the images being shown and adds the images for a chosen assignment
+
 			document.getElementById('images').innerHTML = ''; //clear all the images from previously shown assignment
 
 			jobID = element.getAttribute('jobID');
@@ -105,6 +106,8 @@
 
 
 		function cursorClick(event, element, jobID, uid) {
+			//Find the pixel position of the click on the given image and send that information to the database
+
 			var pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
 			var pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
 			document.getElementById("cross").style.left = (pos_x-1) ;
@@ -113,11 +116,6 @@
 			var imageUUID = element.getAttribute('image-UUID');
 			sendResponse(pos_x, pos_y, jobID, uid, imageUUID);
 
-				// THIS PRINTS OUT THE PIXEL LOCATION OF CLICKS ON THE PAGE
-			// var para = document.createElement('p');
-			// var node = document.createTextNode('x: ' + pos_x + 'y: ' + pos_y + '\n')
-			// para.appendChild(node);
-			// document.body.appendChild(node);
 		}
 
 		function sendResponse(pos_x, pos_y, jobID, uid, imageUUID) {
@@ -178,37 +176,5 @@
     </script>
 
 
-
-
-
-<!-- THIS IS DISPLAYING AN IMAGE FROM THE STORAGE GIVEN ITS FILENAME-->
-	<!--<script>
-		console.log("test2")
-		//var app = firebase.initializeApp(config);
-
-		console.log(uid);
-
-		// You can retrieve services via the defaultApp variable...
-		var storage = app.storage();
-		var imagesRef = storage.ref();
-		var image = imagesRef.child('1699041B-14DC-4C3F-BC73-1A570D205060.jpg');
-		image.getDownloadURL().then(function(url) {
-			var img = document.createElement('img');
-			img.src = url;
-			document.body.appendChild(img);
-		})
-			// }).catch(function(error) {
-			//   // Handle any errors
-			// });
-
-		//	console.log(img);
-
-
-		var database = app.database();
-
-
-		var jobRef = database.ref('/labeling_jobs');
-		console.log(5+5);
-
-	</script>-->
+	<link rel='manifest' href='manifest.json'>
 </html>
