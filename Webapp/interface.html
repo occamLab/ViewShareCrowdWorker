@@ -33,10 +33,10 @@
 	<script scr='notifications.js'></script> <!-- This is to ensure that the user can get assigned to a job and receive notifications -->
 
 	<script type="text/javascript">
-		var app = firebase.initializeApp(config);
-		var database = app.database();
-		var storage = app.storage();
-		var imagesRef = storage.ref()
+		const app = firebase.initializeApp(config);
+		const database = app.database();
+		const storage = app.storage();
+		const imagesRef = storage.ref()
 
 		firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
@@ -85,18 +85,18 @@
 
 			jobID = element.getAttribute('jobID');
 			objectToFind = element.innerHTML;
-			document.getElementById('objectToFind').innerHTML = 'Find ' + objectToFind;
+			document.getElementById('objectToFind').innerHTML = 'Find ' + objectToFind; //show text to find object
 
 			var jobRef = database.ref('labeling_jobs/' + jobID + '/additional_images');
 			jobRef.on('child_added', function(childSnapshot, prevChildKey) {
 				var imageID = childSnapshot.key;
 				var image = imagesRef.child(imageID + '.jpg');
-				image.getDownloadURL().then(function(url) {
-					var img = document.createElement('img');
+				image.getDownloadURL().then(function(url) { //using the image id create the object and display it on the webpage
+					var img = document.createElement('img'); //set image attributes
 					img.src = url;
 					img.id = 'cross';
 					img.setAttribute('image-UUID', imageID);
-					img.addEventListener('click', function() {
+					img.addEventListener('click', function() { //when clicked, send info
 						cursorClick(event, this, jobID, uid);
 					});
 					document.getElementById('images').appendChild(img);
@@ -119,6 +119,8 @@
 		}
 
 		function sendResponse(pos_x, pos_y, jobID, uid, imageUUID) {
+			// sends user response to the database given the position clicked and image clicked
+
 			var requestingRef = database.ref('labeling_jobs/' + jobID + '/requesting_user');
 			requestingRef.once('value').then(function(snapshot) {
 				var requestingUser = snapshot.val();
@@ -134,13 +136,12 @@
 			});
 		}
 
-		initApp = function() {
+		initApp = function() { //initializes the app
 			firebase.auth().onAuthStateChanged(function(user) {
 			  if (user) {
 			    // User is signed in.
 			    uid = user.uid;
 			    user.getIdToken().then(function(accessToken) {
-					//console.log(uid)
 			      //}, null, '  ');
 				});
 			  } else {
@@ -155,7 +156,7 @@
 			initApp()
 		});
 
-		function getUID() {
+		function getUID() { //this function returns the current user's id
 			firebase.auth().onAuthStateChanged(function(user) {
 				if (user) {
 					uid = user.uid
