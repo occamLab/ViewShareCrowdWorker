@@ -89,7 +89,10 @@ jazzy --min-acl internal
 
 ### Web app
 
-Coming soon!
+Set up firebase to run on the server:
+```npm install -g firebase tools
+firebase init
+```
 
 ## How to run
 
@@ -107,7 +110,7 @@ If you have a developer signing error (which you may only see when trying to bui
 
 ### Run the web app
 
-To run on a local server: run `firebase sentToServer` from the directory containing the firebase project
+To run on a local server: run `firebase serve` from the directory containing the firebase project, and go to the address it shows in a browser of your choice
 
 ## Architecture
 
@@ -136,6 +139,7 @@ The `PreviewCollectionViewController` scene is a collection of images associated
 `firebase.json` sets the site up so it can be served through firebase
 `manifest.json` is a setup that defines some of the metadata of the page
 
+`favicon.ico` is the image that browsers reference to display the logo on the tab
 
 ### Firebase database structure
 
