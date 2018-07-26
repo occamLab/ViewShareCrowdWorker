@@ -3,7 +3,7 @@
 	<head>
 		<title>View Share</title>
 	</head>
-	<div id='info'></div>
+	<div id='info'>Waiting for assignments...</div>
 	<div id='buttons'></div>
 	<body>
 		<p></p>
@@ -43,33 +43,25 @@
 				uid = user.uid; // gets unique user id
 
 				var tokenRef = database.ref('notification_tokens/' + uid + '/assignments'); // creates reference to the user's jobs
-				tokenRef.once('value').then(function(snapshot){
-					if (snapshot.val()) { 		//check if there are any assignments to look at
-						document.getElementById('info').innerHTML = 'Choose an assignment: ';
+				tokenRef.on('child_added', function(childSnapshot, prevChildKey) {
+					document.getElementById('info').innerHTML = 'Choose an assignment: ';
 
-						jobs = Object.keys(snapshot.val());
-						for (i = 0; i < jobs.length; i++) { 	//go through all the possible assignments and display a button for each one
-							jobID = jobs[i];
-							var object = snapshot.child(jobID).child('object_to_find').val();
-							var button = document.createElement('button');
-							button.setAttribute('class', 'option');
-							button.setAttribute('jobID', jobID)
-							button.innerHTML = object;
+					var object = childSnapshot.child('object_to_find').val();
+					console.log(object);
 
-							button.addEventListener('click', function() {	// when the button is clicked, display all the images related to that image
-								displayJob(this);
-							});
-							document.getElementById('buttons').appendChild(button);
+					jobID = childSnapshot.key;
+					console.log(jobID);
+					var button = document.createElement('button');
+					button.setAttribute('class', 'option');
+					button.setAttribute('jobID', jobID)
+					button.innerHTML = object;
 
-						}
-					}
-					else { //if no assignments, show the user that
-						document.getElementById('objectToFind').innerHTML = 'No images to show';
-					}
-
+					button.addEventListener('click', function() {	// when the button is clicked, display all the images related to that image
+						displayJob(this);
+					});
+					document.getElementById('buttons').appendChild(button);
 
 				})
-
 			// User is signed in.
 			} else {
 			// No user is signed in.
@@ -80,7 +72,7 @@
 
 		function displayJob(element) {
 			// This function clears the images being shown and adds the images for a chosen assignment
-
+			console.log('click');
 			document.getElementById('images').innerHTML = ''; //clear all the images from previously shown assignment
 
 			jobID = element.getAttribute('jobID');
