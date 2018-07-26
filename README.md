@@ -89,7 +89,10 @@ jazzy --min-acl internal
 
 ### Web app
 
-Coming soon!
+Set up firebase to run on the server:
+```npm install -g firebase tools
+firebase init
+```
 
 ## How to run
 
@@ -107,7 +110,7 @@ If you have a developer signing error (which you may only see when trying to bui
 
 ### Run the web app
 
-Coming soon!
+To run on a local server: run `firebase serve` from the directory containing the firebase project, and go to the address it shows in a browser of your choice
 
 ## Architecture
 
@@ -125,7 +128,18 @@ The `PreviewCollectionViewController` scene is a collection of images associated
 
 ### Web app architecture
 
-Coming soon!
+`index.html` is the landing page for a user that is not signed in, and gives the option to either log in or register a new account. Once the user logs in, the page redirects to `interface.html`, which is the page where a user can answer assignments given to them.
+`logintest.html` is a page that was used for testing that the login sequence was functional, but is no longer directly in use
+
+`config.js` has the necessary initialization for the app to work and connect to firebase
+`notifications.js` holds the script that allows for users to be notified when a new job is assigned to them
+`uuidGenerator.js` contains a function that is used to generate a UUID, using code from npm package [`uuid`](https://www.npmjs.com/package/uuid)
+
+`database.rules.json` defines the set of rules for accessing the database
+`firebase.json` sets the site up so it can be served through firebase
+`manifest.json` is a setup that defines some of the metadata of the page
+
+`favicon.ico` is the image that browsers reference to display the logo on the tab
 
 ### Firebase database structure
 

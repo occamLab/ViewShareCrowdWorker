@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>View Share</title>
+	</head>
+	<div id='info'>Waiting for assignments...</div>
+	<div id='buttons'></div>
+	<body>
+		<p></p>
+		<h3 id='objectToFind'></h3>
+	</body>
+	<div id='images'></div>
+	<!-- This initializes the firebase app -->
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+	<script>
+		var config = {
+		apiKey: "AIzaSyBakHl5BORexlsuMT2jUxi5PgQOnuKSco8",
+		authDomain: "object-locator.firebaseapp.com",
+		databaseURL: "https://object-locator.firebaseio.com",
+		projectId: "object-locator",
+		storageBucket: "object-locator.appspot.com",
+		messagingSenderId: "876037163064"
+		};
+	</script>
+
+	<!-- These scripts make the different firebase functions available for use -->
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-storage.js"></script>
+	<script src="uuidGenerator.js"></script> <!-- This is used to generate a UUID -->
+	<script scr='notifications.js'></script> <!-- This is to ensure that the user can get assigned to a job and receive notifications -->
+
+	<script type="text/javascript">
+		const app = firebase.initializeApp(config);
+		const database = app.database();
+		const storage = app.storage();
+		const imagesRef = storage.ref()
+
+		firebase.auth().onAuthStateChanged(function(user) {
+			if (user) {
+				uid = user.uid; // gets unique user id
+
+				var tokenRef = database.ref('notification_tokens/' + uid + '/assignments'); // creates reference to the user's jobs
+				tokenRef.on('child_added', function(childSnapshot, prevChildKey) {
+					document.getElementById('info').innerHTML = 'Choose an assignment: ';
+
+					var object = childSnapshot.child('object_to_find').val();
+					console.log(object);
+
+					jobID = childSnapshot.key;
+					console.log(jobID);
+					var button = document.createElement('button');
+					button.setAttribute('class', 'option');
+					button.setAttribute('jobID', jobID)
+					button.innerHTML = object;
+
+					button.addEventListener('click', function() {	// when the button is clicked, display all the images related to that image
+						displayJob(this);
+					});
+					document.getElementById('buttons').appendChild(button);
+
+				})
+			// User is signed in.
+			} else {
+			// No user is signed in.
+				return null;
+			}
+		});
+
+
+		function displayJob(element) {
+			// This function clears the images being shown and adds the images for a chosen assignment
+			console.log('click');
+			document.getElementById('images').innerHTML = ''; //clear all the images from previously shown assignment
+
+			jobID = element.getAttribute('jobID');
+			objectToFind = element.innerHTML;
+			document.getElementById('objectToFind').innerHTML = 'Find ' + objectToFind; //show text to find object
+
+			var jobRef = database.ref('labeling_jobs/' + jobID + '/additional_images');
+			jobRef.on('child_added', function(childSnapshot, prevChildKey) {
+				var imageID = childSnapshot.key;
+				var image = imagesRef.child(imageID + '.jpg');
+				image.getDownloadURL().then(function(url) { //using the image id create the object and display it on the webpage
+					var img = document.createElement('img'); //set image attributes
+					img.src = url;
+					img.id = 'cross';
+					img.setAttribute('image-UUID', imageID);
+					img.addEventListener('click', function() { //when clicked, send info
+						cursorClick(event, this, jobID, uid);
+					});
+					document.getElementById('images').appendChild(img);
+				})
+			});
+		}
+
+
+		function cursorClick(event, element, jobID, uid) {
+			//Find the pixel position of the click on the given image and send that information to the database
+
+			var pos_x = event.offsetX?(event.offsetX):event.pageX-document.getElementById("pointer_div").offsetLeft;
+			var pos_y = event.offsetY?(event.offsetY):event.pageY-document.getElementById("pointer_div").offsetTop;
+			document.getElementById("cross").style.left = (pos_x-1) ;
+			document.getElementById("cross").style.top = (pos_y-15) ;
+			document.getElementById("cross").style.visibility = "visible" ;
+			var imageUUID = element.getAttribute('image-UUID');
+			sendResponse(pos_x, pos_y, jobID, uid, imageUUID);
+
+		}
+
+		function sendResponse(pos_x, pos_y, jobID, uid, imageUUID) {
+			// sends user response to the database given the position clicked and image clicked
+
+			var requestingRef = database.ref('labeling_jobs/' + jobID + '/requesting_user');
+			requestingRef.once('value').then(function(snapshot) {
+				var requestingUser = snapshot.val();
+				var responseRef = database.ref('responses/' + requestingUser + '/' + jobID);
+				responseRef.child(uid + '_' + uuidv1()).set({
+					imageUUID: imageUUID,
+					x: pos_x,
+					y: pos_y
+
+				});
+				console.log(requestingUser);
+
+			});
+		}
+
+		initApp = function() { //initializes the app
+			firebase.auth().onAuthStateChanged(function(user) {
+			  if (user) {
+			    // User is signed in.
+			    uid = user.uid;
+			    user.getIdToken().then(function(accessToken) {
+			      //}, null, '  ');
+				});
+			  } else {
+			    // User is signed out.
+				console.log('User not signed in');
+			  }
+			}, function(error) {
+			  console.log(error);
+			});
+		};
+		window.addEventListener('load', function() {
+			initApp()
+		});
+
+		function getUID() { //this function returns the current user's id
+			firebase.auth().onAuthStateChanged(function(user) {
+				if (user) {
+					uid = user.uid
+					console.log(uid)
+					return uid;
+				// User is signed in.
+				} else {
+				// No user is signed in.
+					return null;
+				}
+			});
+		}
+		function getJobRef(userID, database) {
+			tokenRef = database.ref('notification_tokens/' + userID + '/assignments')
+			return tokenRef;
+		}
+
+    </script>
+
+
+	<link rel='manifest' href='manifest.json'>
+</html>
